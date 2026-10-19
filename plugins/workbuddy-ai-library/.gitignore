@@ -1,0 +1,6 @@
+# 运行时状态，不应提交
+hooks/prefetch.log
+hooks/prefetch.log.*
+hooks/.last-spawn-attempt
+__pycache__/
+*.pyc

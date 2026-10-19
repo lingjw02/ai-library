@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+*.db-wal
+*.db-shm
+*.log
+.agent-tmp/
+agent_records/
+*.exe
+
+# Exclude heavy binaries and raw sources in data/
+data/
+!data/knowledge_os_schema.sql

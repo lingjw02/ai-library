@@ -1,0 +1,20 @@
+{
+  "name": "@ling/ai-library-harness",
+  "version": "1.5.0",
+  "private": true,
+  "type": "module",
+  "description": "AI Library browsing, evidence preparation and reviewed native chat synchronization for DeepSeek Harness",
+  "engines": { "node": ">=22.19" },
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": ["index.js", "bridge-client.js", "project-state.js", "control-state.js", "development-workspace.js", "sync-queue.js", "sync-events.js", "client.js", "cordis.patch.yml", "locale/*.json", "icon.svg", "README.md"],
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" }, "client": {
+    "platform": "web", "immediately": true,
+    "inject": ["@deepseek-ai/dsh-client-ui-conversation", "@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-api-remotes", "@deepseek-ai/dsh-client-ui-sidebar-right"]
+  } }
+}

@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "port": 47821,
+  "dataDir": "D:/02_Development_Tools/AI library/data",
+  "scope": "default",
+  "principal": "workbuddy",
+  "maxContextChars": 6000,
+  "maxItems": 3,
+  "excerptChars": 480,
+  "projectId": null,
+  "minPromptChars": 4,
+  "skipPrefixes": [
+    "/"
+  ],
+  "skipRegex": "^(?:(?:ok|okay|好的?|谢谢|感谢你?|多谢|收到|明白|嗯+|是的|对的|没问题|可以|行|辛苦了?|不错|棒|赞|厉害|thanks?|thank\\s*you|thx|got\\s*it|nice|cool|great|awesome)[\\s!！。.，,、~～？?…]*)+$",
+  "probeTimeoutSeconds": 0.35,
+  "requestTimeoutSeconds": 15,
+  "coldWaitSeconds": 12,
+  "spawnCooldownSeconds": 60,
+  "daemonIdleSeconds": 1800,
+  "startTimeoutSeconds": 30,
+  "buildAttempts": 12,
+  "buildRetryDelaySeconds": 1.5,
+  "requestAttempts": 3,
+  "logPath": "D:/02_Development_Tools/AI library/plugins/workbuddy-ai-library/hooks/prefetch.log",
+  "logMaxBytes": 262144
+}

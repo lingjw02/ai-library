@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "authoring": "scripts/build_universe_models.py",
+  "blenderVersion": "4.5.3 LTS",
+  "license": "Original project assets; no third-party artwork",
+  "assets": [
+    {
+      "name": "personal-core",
+      "file": "personal-core.glb",
+      "family": "personal",
+      "description": "Bronze archive world with indexed armor, copper folios and orbiting archive rail",
+      "triangles": 9312,
+      "materials": 4,
+      "drawCalls": 7,
+      "bytes": 403812,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "project-engineering",
+      "file": "project-engineering.glb",
+      "family": "project",
+      "description": "Segmented industrial world, equatorial drydocks and polar antenna",
+      "triangles": 4108,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 146776,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "project-creative",
+      "file": "project-creative.glb",
+      "family": "project",
+      "description": "Terracotta ribbon world with lifted sculptural continents",
+      "triangles": 4920,
+      "materials": 3,
+      "drawCalls": 3,
+      "bytes": 127956,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "project-knowledge",
+      "file": "project-knowledge.glb",
+      "family": "project",
+      "description": "Jade manuscript terraces with polar observatory",
+      "triangles": 7320,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 413744,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "note-crystal",
+      "file": "note-crystal.glb",
+      "family": "note",
+      "description": "Restrained six-sided archive shard with indexed page stack",
+      "triangles": 744,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 46596,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "memory-core",
+      "file": "memory-core.glb",
+      "family": "memory",
+      "description": "Suspended lumen in octahedral lattice with memory banks",
+      "triangles": 2144,
+      "materials": 3,
+      "drawCalls": 3,
+      "bytes": 79740,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "skill-station",
+      "file": "skill-station.glb",
+      "family": "skill",
+      "description": "Six-deck radial station, dock modules and solar service wings",
+      "triangles": 7224,
+      "materials": 4,
+      "drawCalls": 7,
+      "bytes": 305552,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "mcp-ship",
+      "file": "mcp-ship.glb",
+      "family": "mcp",
+      "description": "Swept asymmetric communications frigate with receiving dish",
+      "triangles": 3200,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 183008,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "skill-module",
+      "file": "skill-module.glb",
+      "family": "skill",
+      "description": "Compact tool cartridge with grip channels and coupling pins",
+      "triangles": 1596,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 112488,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    },
+    {
+      "name": "mcp-vessel",
+      "file": "mcp-vessel.glb",
+      "family": "mcp",
+      "description": "Compact twin-nacelle uplink vessel",
+      "triangles": 2312,
+      "materials": 4,
+      "drawCalls": 4,
+      "bytes": 155544,
+      "nominalRadius": 1,
+      "origin": "Original procedural mesh authored for AI Library; no external artwork"
+    }
+  ]
+}

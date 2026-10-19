@@ -1,0 +1,666 @@
+{
+  "schemaVersion": 2,
+  "aasCoreVersion": "19.8.0",
+  "philosophy": "The agent inspects and chooses. AAS records and validates. You control.",
+  "project": {
+    "name": "ai-library-knowledge-os",
+    "target": "antigravity-codex-claude-gemini",
+    "selectiveActivation": true
+  },
+  "skills": [
+    {
+      "id": "accessibility-patterns",
+      "kind": "skill",
+      "category": "frontend",
+      "domain": "UI / 前端与视觉体验舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": [
+        "accessibility-patterns",
+        "accessibility-testing"
+      ]
+    },
+    {
+      "id": "agent-memory",
+      "kind": "skill",
+      "category": "ai-ml",
+      "domain": "AI 模型 / 机器学习与评估舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "domain behavior",
+      "fused_from": [
+        "agent-memory",
+        "agent-memory-mcp"
+      ]
+    },
+    {
+      "id": "artifact-template-business-review",
+      "kind": "skill",
+      "category": "business",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "external integrations",
+      "fused_from": [
+        "artifact-template-business-review",
+        "artifact-template-operating-review"
+      ]
+    },
+    {
+      "id": "artifact-template-legal-memorandum",
+      "kind": "skill",
+      "category": "business",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "external integrations",
+      "fused_from": [
+        "artifact-template-legal-memorandum",
+        "artifact-template-strategy-memorandum"
+      ]
+    },
+    {
+      "id": "artifact-template-simple-theme-mode",
+      "kind": "skill",
+      "category": "agent-orchestration",
+      "domain": "Agent / 多智能体编排舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "architecture/runtime",
+      "fused_from": [
+        "artifact-template-simple-dark-mode",
+        "artifact-template-simple-light-mode"
+      ]
+    },
+    {
+      "id": "ask-multi-agent-consult",
+      "kind": "skill",
+      "category": "agent-orchestration",
+      "domain": "Agent / 多智能体编排舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "architecture/runtime",
+      "fused_from": [
+        "ask-claude",
+        "ask-gemini"
+      ]
+    },
+    {
+      "id": "azure-ai-agents-persistent-java",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-ai-agents-persistent-java",
+        "azure-ai-agents-persistent-dotnet"
+      ]
+    },
+    {
+      "id": "azure-ai-document-intelligence-ts",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-ai-document-intelligence-ts",
+        "azure-ai-document-intelligence-dotnet"
+      ]
+    },
+    {
+      "id": "azure-ai-projects-ts",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-ai-projects-ts",
+        "azure-ai-projects-java",
+        "azure-ai-projects-dotnet"
+      ]
+    },
+    {
+      "id": "azure-ai-voicelive-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-ai-voicelive-py",
+        "azure-ai-voicelive-ts",
+        "azure-ai-voicelive-dotnet"
+      ]
+    },
+    {
+      "id": "azure-appconfiguration-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-appconfiguration-py",
+        "azure-appconfiguration-ts",
+        "azure-appconfiguration-java"
+      ]
+    },
+    {
+      "id": "azure-identity-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-identity-py",
+        "azure-identity-rust"
+      ]
+    },
+    {
+      "id": "azure-keyvault-keys-rust",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-keyvault-keys-rust",
+        "azure-keyvault-secrets-rust"
+      ]
+    },
+    {
+      "id": "azure-monitor-opentelemetry-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-monitor-opentelemetry-py",
+        "azure-monitor-opentelemetry-exporter-py"
+      ]
+    },
+    {
+      "id": "azure-monitor-query-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-monitor-query-py",
+        "azure-monitor-query-java"
+      ]
+    },
+    {
+      "id": "azure-resource-manager-mysql-dotnet",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-resource-manager-mysql-dotnet",
+        "azure-resource-manager-postgresql-dotnet"
+      ]
+    },
+    {
+      "id": "azure-resource-manager-sql-dotnet",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-resource-manager-sql-dotnet",
+        "azure-resource-manager-redis-dotnet",
+        "azure-resource-manager-cosmosdb-dotnet",
+        "azure-resource-manager-playwright-dotnet",
+        "azure-resource-manager-durabletask-dotnet"
+      ]
+    },
+    {
+      "id": "azure-servicebus-ts",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-servicebus-ts",
+        "azure-servicebus-dotnet"
+      ]
+    },
+    {
+      "id": "azure-storage-blob-py",
+      "kind": "skill",
+      "category": "cloud",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "deployment/operations",
+      "fused_from": [
+        "azure-storage-blob-py",
+        "azure-storage-blob-ts",
+        "azure-storage-blob-rust"
+      ]
+    },
+    {
+      "id": "brainstorming",
+      "kind": "skill",
+      "category": "workflow",
+      "domain": "探索思考 / 认知决策舰队",
+      "risk": "critical",
+      "source": "community",
+      "capability_dimension": "domain behavior",
+      "fused_from": []
+    },
+    {
+      "id": "cli-anything-gimp",
+      "kind": "skill",
+      "category": "devops",
+      "domain": "DevOps / 工具链与发布部署舰队",
+      "risk": "safe",
+      "source": "local-curated",
+      "capability_dimension": "deployment/operations",
+      "fused_from": []
+    },
+    {
+      "id": "cli-hub-meta",
+      "kind": "skill",
+      "category": "devops",
+      "domain": "DevOps / 工具链与发布部署舰队",
+      "risk": "medium",
+      "source": "local-curated",
+      "capability_dimension": "deployment/operations",
+      "fused_from": []
+    },
+    {
+      "id": "code-review",
+      "kind": "skill",
+      "category": "code-quality",
+      "domain": "代码重构 / 架构整洁与审查舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "maintenance workflow",
+      "fused_from": [
+        "code-review",
+        "review"
+      ]
+    },
+    {
+      "id": "design-taste-frontend",
+      "kind": "skill",
+      "category": "frontend",
+      "domain": "UI / 前端与视觉体验舰队",
+      "risk": "safe",
+      "source": "community",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": []
+    },
+    {
+      "id": "dispatching-parallel-agents",
+      "kind": "skill",
+      "category": "ai-agents",
+      "domain": "Agent / 多智能体编排舰队",
+      "risk": "critical",
+      "source": "community",
+      "capability_dimension": "architecture/runtime",
+      "fused_from": []
+    },
+    {
+      "id": "executing-plans",
+      "kind": "skill",
+      "category": "workflow",
+      "domain": "探索思考 / 认知决策舰队",
+      "risk": "critical",
+      "source": "community",
+      "capability_dimension": "domain behavior",
+      "fused_from": []
+    },
+    {
+      "id": "find-skills",
+      "kind": "skill",
+      "category": "backend",
+      "domain": "后端服务 / 分布式与 API 架构舰队",
+      "risk": "medium",
+      "source": "local-curated",
+      "capability_dimension": "languages/frameworks",
+      "fused_from": []
+    },
+    {
+      "id": "finishing-a-development-branch",
+      "kind": "skill",
+      "category": "workflow",
+      "domain": "探索思考 / 认知决策舰队",
+      "risk": "critical",
+      "source": "community",
+      "capability_dimension": "domain behavior",
+      "fused_from": []
+    },
+    {
+      "id": "flat-design",
+      "kind": "skill",
+      "category": "design-it",
+      "domain": "UI / 前端与视觉体验舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": [
+        "flat-design",
+        "flat-design-2"
+      ]
+    },
+    {
+      "id": "full-output-enforcement",
+      "kind": "skill",
+      "category": "frontend",
+      "domain": "UI / 前端与视觉体验舰队",
+      "risk": "safe",
+      "source": "community",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": []
+    },
+    {
+      "id": "hunt-xss",
+      "kind": "skill",
+      "category": "security",
+      "domain": "安全防御 / 威胁审计合规舰队",
+      "risk": "medium",
+      "source": "fused-composite",
+      "capability_dimension": "security/privacy",
+      "fused_from": [
+        "hunt-xss",
+        "hunt-ssrf"
+      ]
+    },
+    {
+      "id": "implement-plan",
+      "kind": "skill",
+      "category": "workflow",
+      "domain": "探索思考 / 认知决策舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "domain behavior",
+      "fused_from": [
+        "implement_plan",
+        "implement_plan_micro"
+      ]
+    },
+    {
+      "id": "makepad-2-0-dsl",
+      "kind": "skill",
+      "category": "development",
+      "domain": "后端服务 / 分布式与 API 架构舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "languages/frameworks",
+      "fused_from": [
+        "makepad-2-0-dsl",
+        "makepad-2-0-widgets"
+      ]
+    },
+    {
+      "id": "markstream-vue",
+      "kind": "skill",
+      "category": "frontend",
+      "domain": "UI / 前端与视觉体验舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": [
+        "markstream-vue",
+        "markstream-vue2"
+      ]
+    },
+    {
+      "id": "mcp-aas-core",
+      "kind": "mcp",
+      "category": "meta",
+      "domain": "开发者效能 / 扩展元技能舰队",
+      "risk": "safe",
+      "source": "mcp-control-plane",
+      "capability_dimension": "maintenance workflow",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-ai-library-embedding",
+      "kind": "mcp",
+      "category": "data",
+      "domain": "数据科学 / 知识检索与记忆舰队",
+      "risk": "safe",
+      "source": "mcp-control-plane",
+      "capability_dimension": "data/storage",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-ai-memory-library",
+      "kind": "mcp",
+      "category": "data",
+      "domain": "数据科学 / 知识检索与记忆舰队",
+      "risk": "low",
+      "source": "mcp-control-plane",
+      "capability_dimension": "data/storage",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-brevo",
+      "kind": "mcp",
+      "category": "business",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "risk": "medium",
+      "source": "mcp-control-plane",
+      "capability_dimension": "external integrations",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-browser-mcp",
+      "kind": "mcp",
+      "category": "testing",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "risk": "low",
+      "source": "mcp-control-plane",
+      "capability_dimension": "testing/quality",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-chrome-devtools",
+      "kind": "mcp",
+      "category": "testing",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "risk": "low",
+      "source": "mcp-control-plane",
+      "capability_dimension": "testing/quality",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-rea",
+      "kind": "mcp",
+      "category": "agent-orchestration",
+      "domain": "Agent / 多智能体编排舰队",
+      "risk": "low",
+      "source": "mcp-control-plane",
+      "capability_dimension": "architecture/runtime",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-supabase",
+      "kind": "mcp",
+      "category": "backend",
+      "domain": "后端服务 / 分布式与 API 架构舰队",
+      "risk": "medium",
+      "source": "mcp-control-plane",
+      "capability_dimension": "languages/frameworks",
+      "fused_from": []
+    },
+    {
+      "id": "mcp-window-mcp",
+      "kind": "mcp",
+      "category": "devops",
+      "domain": "DevOps / 工具链与发布部署舰队",
+      "risk": "low",
+      "source": "mcp-control-plane",
+      "capability_dimension": "deployment/operations",
+      "fused_from": []
+    },
+    {
+      "id": "receiving-code-review",
+      "kind": "skill",
+      "category": "workflow",
+      "domain": "探索思考 / 认知决策舰队",
+      "risk": "critical",
+      "source": "community",
+      "capability_dimension": "domain behavior",
+      "fused_from": []
+    },
+    {
+      "id": "skill-creator",
+      "kind": "skill",
+      "category": "meta",
+      "domain": "开发者效能 / 扩展元技能舰队",
+      "risk": "safe",
+      "source": "fused-composite",
+      "capability_dimension": "maintenance workflow",
+      "fused_from": [
+        "skill-creator",
+        "skill-developer",
+        "skill-development"
+      ]
+    },
+    {
+      "id": "test-driven-development",
+      "kind": "skill",
+      "category": "testing",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "risk": "critical",
+      "source": "fused-composite",
+      "capability_dimension": "testing/quality",
+      "fused_from": [
+        "test-driven-development",
+        "tdd"
+      ]
+    },
+    {
+      "id": "2d-games",
+      "kind": "skill",
+      "category": "game-development",
+      "domain": "动效 / 多媒体视听与 3D 舰队",
+      "risk": "none",
+      "source": "community",
+      "capability_dimension": "ux/accessibility",
+      "fused_from": []
+    },
+    {
+      "id": "app-store-changelog",
+      "kind": "skill",
+      "category": "content",
+      "domain": "创意写作 / 文档与提示词工程舰队",
+      "risk": "safe",
+      "source": "Dimillian/Skills (MIT)",
+      "capability_dimension": "domain behavior",
+      "fused_from": []
+    },
+    {
+      "id": "add-app-clip",
+      "kind": "skill",
+      "category": "mobile",
+      "domain": "移动终端 / 跨端应用开发舰队",
+      "risk": "critical",
+      "source": "https://github.com/expo/skills/tree/main/plugins/expo/skills/add-app-clip",
+      "capability_dimension": "languages/frameworks",
+      "fused_from": []
+    }
+  ],
+  "coverage": {
+    "covered_dimensions": {
+      "architecture/runtime": [
+        "artifact-template-simple-theme-mode",
+        "ask-multi-agent-consult",
+        "dispatching-parallel-agents",
+        "mcp-rea"
+      ],
+      "languages/frameworks": [
+        "find-skills",
+        "makepad-2-0-dsl",
+        "mcp-supabase",
+        "add-app-clip"
+      ],
+      "domain behavior": [
+        "agent-memory",
+        "brainstorming",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "implement-plan",
+        "receiving-code-review",
+        "app-store-changelog"
+      ],
+      "data/storage": [
+        "mcp-ai-library-embedding",
+        "mcp-ai-memory-library"
+      ],
+      "external integrations": [
+        "artifact-template-business-review",
+        "artifact-template-legal-memorandum",
+        "mcp-brevo"
+      ],
+      "testing/quality": [
+        "mcp-browser-mcp",
+        "mcp-chrome-devtools",
+        "test-driven-development"
+      ],
+      "security/privacy": [
+        "hunt-xss"
+      ],
+      "ux/accessibility": [
+        "accessibility-patterns",
+        "design-taste-frontend",
+        "flat-design",
+        "full-output-enforcement",
+        "markstream-vue",
+        "2d-games"
+      ],
+      "deployment/operations": [
+        "azure-ai-agents-persistent-java",
+        "azure-ai-document-intelligence-ts",
+        "azure-ai-projects-ts",
+        "azure-ai-voicelive-py",
+        "azure-appconfiguration-py",
+        "azure-identity-py",
+        "azure-keyvault-keys-rust",
+        "azure-monitor-opentelemetry-py",
+        "azure-monitor-query-py",
+        "azure-resource-manager-mysql-dotnet",
+        "azure-resource-manager-sql-dotnet",
+        "azure-servicebus-ts",
+        "azure-storage-blob-py",
+        "cli-anything-gimp",
+        "cli-hub-meta",
+        "mcp-window-mcp"
+      ],
+      "maintenance workflow": [
+        "code-review",
+        "mcp-aas-core",
+        "skill-creator"
+      ]
+    },
+    "catalog_gaps": [],
+    "coverage_ratio": 1.0
+  }
+}

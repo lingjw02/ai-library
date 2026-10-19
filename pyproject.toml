@@ -1,0 +1,26 @@
+[project]
+name = "ai-knowledge-os"
+version = "0.1.0"
+description = "Model-Agnostic Knowledge, Memory & Shared Capability Infrastructure"
+readme = "work/AI-Knowledge-OS-Backend-README-v1.4.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2.8.0",
+    "pyyaml>=6.0.2",
+    "httpx>=0.27.0",
+    "mcp>=2.3.0,<3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

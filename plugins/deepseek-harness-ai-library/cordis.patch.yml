@@ -1,0 +1,15 @@
+- insert:
+    - id: ling-ai-library-prefetch
+      name: '@ling/ai-library-harness'
+      config:
+        pythonExecutable: 'D:/02_Development_Tools/AI library/.venv/Scripts/python.exe'
+        bridgeScript: 'D:/02_Development_Tools/AI library/scripts/run_harness_bridge.py'
+        dataDir: 'D:/02_Development_Tools/AI library/data'
+        scope: default
+        principal: deepseek-harness
+        maxContextChars: 6000
+        maxItems: 3
+        excerptChars: 480
+        timeoutMs: 15000
+        maxReplyBytes: 1048576
+        allowConfirmedSync: true

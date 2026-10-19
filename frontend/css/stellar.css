@@ -1,0 +1,77 @@
+/* Independent model world: quiet UI gives the authored 3D assets the foreground. */
+:root{--u-space:#06090e;--u-panel:#101821;--u-ink:#edf3f7;--u-muted:#b0becb;--u-gold:#edc18a;--u-line:#32414f}
+.universe-workspace{background:#06090e}
+.universe-header{background:#080d13e8;border-bottom:1px solid #26313c;backdrop-filter:none}
+.universe-brand{letter-spacing:.025em;font-size:15px}
+.universe-brand small{letter-spacing:0;color:#b0becb;font-size:11px}
+.neural-navigation{background:#111922;border:1px solid #32414f;border-radius:10px;backdrop-filter:none}
+.neural-navigation button{border-radius:7px;font-size:12px}
+.neural-navigation button[aria-current="page"]{background:#253442;color:#f1d2a5}
+.neural-navigation button span{display:none}
+.universe-top{top:92px;left:28px;max-width:min(440px,calc(100% - 56px));pointer-events:none}
+.universe-top button,.universe-top nav{pointer-events:auto}
+.universe-heading-row h1{font-size:24px;letter-spacing:0;line-height:1.35;font-weight:500}
+#universe-path{font-size:12px}
+#universe-summary{font-size:12px;color:#b0becb;margin:8px 0}
+.universe-topic-actions{gap:18px;margin-top:9px}
+.universe-topic-actions button{font-size:12px;color:#b0becb;min-height:30px}
+.neural-legend{display:none!important}
+button.universe-label{width:auto;max-width:164px;min-width:0;background:#0c141dbf;border:1px solid #365063;border-radius:7px;backdrop-filter:none;padding:6px 10px;box-shadow:none;font-size:12px;color:#e5edf5}
+.universe-label-title,button.universe-label .universe-label-title{font-size:12px;line-height:1.5;max-width:144px;font-weight:400}
+.universe-label-kind,.neural-node-count{display:none!important}
+.universe-label:not(button){max-width:240px;border:1px solid #526878;border-radius:6px;background:#111b26f0;backdrop-filter:none;padding:8px 11px;font-size:12px}
+.universe-label--notes-hub{border-color:#a78150!important;color:#ffe0ae!important;background:#251d13d9!important}
+.universe-label.is-located{border-color:#edc18a!important}
+.universe-search{bottom:22px;width:clamp(260px,35vw,490px);height:44px;border-radius:10px;background:#111b26f2;border:1px solid #415569;backdrop-filter:none}
+.universe-search input{font-size:13px;color:#edf3f7}
+.universe-search input::placeholder{color:#b0becb}
+.universe-search button{font-size:12px}
+.universe-footer{bottom:24px;left:0;right:0;padding:0 26px;align-items:center}
+.universe-footer-left{max-width:22%;pointer-events:none}
+.universe-help{font-size:11px;color:#b0becb;line-height:1.8;display:block}
+.universe-controls{border-radius:10px;border:1px solid #32414f;background:#111922;backdrop-filter:none;gap:2px;max-width:32vw;flex-wrap:wrap;justify-content:flex-end}
+.universe-controls .u-button{font-size:11px;padding:7px 9px;border-radius:6px;min-height:32px}
+.universe-controls .u-button[aria-pressed="true"]{background:#2c3d4d;color:#ffe0ae}
+.universe-controls .u-button[hidden]{display:none}
+.universe-directory{background:#101821f7;border:1px solid #354757;border-radius:12px;backdrop-filter:none;left:24px;width:min(360px,calc(100% - 48px));bottom:92px;padding:20px;box-shadow:10px 14px 40px #0006}
+.directory-heading h2{font-size:16px}
+.universe-entry-main strong{font-size:14px;line-height:1.6}
+.universe-entry-main span{font-size:11px;line-height:1.7;color:#b0becb}
+.universe-entry-manage[hidden]{display:none}
+.universe-scope{font-size:12px}
+.universe-directory details{font-size:12px}
+.universe-empty{font-size:14px;line-height:1.8;padding-top:12px}
+.universe-notice{z-index:15;background:#101821;border:1px solid #9c6c48;border-radius:10px;color:#f0d2b7}
+.universe-app .modal-backdrop{inset:72px 12px 12px;pointer-events:none;background:none}
+.universe-app .note-modal-dialog{width:calc(50vw - 12px)!important;max-width:none;border-radius:12px;background:#101821fc}
+.universe-app .memory-detail-drawer{width:calc(50vw - 12px);max-width:none;background:#101821fc;border-radius:12px}
+.universe-app .modal-title-input{font-size:21px}
+.universe-app .modal-body,.universe-app .drawer-body{font-size:14px;line-height:1.8}
+.universe-app .note-editor-textarea{font-size:14px;line-height:1.8;color:#e7eef4;background:#0b121b}
+.universe-app :focus-visible{outline:2px solid #edc18a;outline-offset:3px}
+.universe-app ::selection{background:#b2854c66;color:#fff}
+.universe-app input,.universe-app textarea{caret-color:#edc18a}
+.universe-app ::-webkit-scrollbar{width:7px;height:7px}
+.universe-app ::-webkit-scrollbar-track{background:#0b121b}
+.universe-app ::-webkit-scrollbar-thumb{background:#506577;border-radius:4px}
+.is-organising #universe-list-status{color:#ffe0ae}
+@media(max-width:1100px){.universe-controls{max-width:42vw}.universe-footer-left{display:none}.universe-search{left:24px;transform:none;width:calc(52vw - 36px)}.universe-footer{justify-content:flex-end}.universe-app .modal-header,.universe-app .modal-body{padding:20px}}
+@media(max-width:760px){
+ .universe-header{height:98px;min-height:98px;padding:12px 15px}
+ .universe-brand{font-size:12px;gap:7px}.universe-brand small{font-size:10px}
+ .neural-navigation{top:57px}.neural-navigation button{font-size:11px;padding:7px 15px}
+ .universe-top{top:114px;left:18px;max-width:calc(100% - 36px)}
+ .universe-heading-row h1{font-size:20px}#universe-summary{font-size:11px}
+ .universe-topic-actions{gap:15px}.universe-topic-actions button{font-size:11px}
+ button.universe-label{max-width:128px;padding:5px 8px}.universe-label-title,button.universe-label .universe-label-title{font-size:11px;max-width:110px}
+ .universe-footer{bottom:76px;padding:0 14px;justify-content:center}
+ .universe-controls{max-width:100%;gap:1px;justify-content:center}
+ .universe-controls .u-button{font-size:10px;padding:6px 8px}
+ .universe-search{left:14px;bottom:16px;width:calc(100vw - 28px);height:44px;transform:none}
+ .universe-directory{left:12px;width:calc(100% - 24px);max-width:none;bottom:132px;padding:16px}
+ .universe-app .modal-backdrop{inset:0}
+ .universe-app .note-modal-dialog{width:100%!important;border-radius:0}
+ .universe-app .memory-detail-drawer{inset:0;width:100%;border-radius:0}
+ .universe-app .modal-title-input{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){.universe-app *{animation:none!important;transition:none!important}}

@@ -1,0 +1,285 @@
+/* 
+  AI Library - AI Memory (Cell Network Workspace)
+  Ref: AI Library Frontend README §4, §6
+*/
+
+.memory-workspace {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0c111b;
+}
+
+/* Living Canvas Viewport */
+#network-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#network-canvas:active {
+  cursor: grabbing;
+}
+
+/* Canvas Floating Controls Overlay (§6.1, §6.3) */
+.canvas-controls-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10;
+}
+
+.controls-group {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-md);
+}
+
+.control-btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all var(--timing-feedback);
+}
+
+.control-btn:hover {
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+/* Legend Overlay */
+.network-legend {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-dim);
+  z-index: 10;
+  transition: right var(--timing-detail) var(--ease-spring);
+}
+
+.network-legend.drawer-open {
+  right: 468px; /* Move aside when detail drawer opens */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Option B: Right-side Detail Panel (§4, §6.4) */
+.memory-detail-drawer {
+  position: absolute;
+  top: 0;
+  right: -440px;
+  width: 440px;
+  height: 100%;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-active);
+  box-shadow: var(--shadow-lg), -8px 0 24px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  transition: right var(--timing-detail) var(--ease-spring);
+}
+
+.memory-detail-drawer:not(.open) { visibility: hidden; }
+.memory-layout { display: flex; flex: 1; min-height: 0; position: relative; }
+.memory-sidebar { flex: 0 0 280px; width: 280px; background: var(--bg-secondary); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; padding: 24px 18px 14px; min-height: 0; }
+.memory-sidebar[hidden] { display: none; }
+.sidebar-heading h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.sidebar-heading p, .sidebar-footnote { color: var(--text-muted); font-size: 12px; line-height: 1.7; }
+.project-filter-label { display: block; font-size: 12px; color: var(--text-muted); margin: 24px 0 8px; }
+#memory-project-filter { width: 100%; padding-left: 10px; min-height: 40px; }
+.sidebar-list-heading { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin: 24px 4px 10px; }
+#memory-list-count { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+#memory-node-list { flex: 1; min-height: 0; overflow-y: auto; }
+.memory-list-item { padding: 14px 10px; border-radius: 6px; }
+.memory-list-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px; line-height: 1.6; }
+.memory-list-meta { display: block; font-size: 11px; color: var(--text-muted); margin-top: 7px; overflow-wrap: anywhere; }
+.memory-list-item[aria-pressed="true"] { background: var(--bg-card); }
+#memory-search-status { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.sidebar-footnote { padding: 16px 2px 0; border-top: 1px solid var(--border-subtle); margin-top: 12px; }
+.canvas-caption { position: absolute; left: 28px; top: 22px; font-size: 17px; pointer-events: none; color: var(--text-main); }
+.canvas-caption span { display: block; font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+.network-legend { gap: 14px; max-width: calc(100% - 100px); flex-wrap: wrap; background: var(--bg-secondary); backdrop-filter: none; border: 0; box-shadow: none; }
+.network-legend.drawer-open { display: none; }
+.verification-notice { color: #ead49e; background: #302b20; padding: 12px 14px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.detail-content-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.85; background: none; border: 0; padding: 0; font-size: 14px; user-select: text; }
+.dim-card { background: none; border: 0; border-bottom: 1px solid var(--border-subtle); border-radius: 0; padding: 8px 0 12px; }
+.drawer-title { line-height: 1.6; overflow-wrap: anywhere; font-weight: 600; }
+.provenance-row { gap: 12px; }
+.provenance-val { min-width: 0; overflow-wrap: anywhere; }
+.memory-detail-drawer { width: min(440px, 100%); }
+@media (max-width: 1100px) { .memory-sidebar { flex-basis: 240px; width: 240px; } }
+@media (max-width: 760px) {
+  .memory-sidebar { position: absolute; z-index: 15; top: 0; bottom: 0; left: 0; width: min(290px, 90vw); box-shadow: 12px 0 32px #0006; }
+  .memory-detail-drawer { width: 100%; max-width: 100%; }
+  .canvas-caption { left: 20px; top: 18px; }
+  .network-legend { bottom: 14px; right: 12px; font-size: 10px; gap: 8px; }
+}
+
+.memory-detail-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 85%;
+}
+
+.drawer-node-type-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+.drawer-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.drawer-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Badges Grid (§10, §55) */
+.dimensions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.dim-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dim-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.dim-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Detail Content Block */
+.detail-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.detail-content-text {
+  font-size: 13px;
+  color: var(--text-main);
+  background: var(--bg-card);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  line-height: 1.6;
+}
+
+/* Provenance & Source Block (§11) */
+.provenance-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.provenance-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.provenance-val {
+  color: var(--text-main);
+  font-family: monospace;
+}
+
+.drawer-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 10px;
+  background: var(--bg-secondary);
+}

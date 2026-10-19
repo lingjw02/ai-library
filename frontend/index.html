@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>AI Library · 知识宇宙</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/memory.css">
+  <link rel="stylesheet" href="css/maintenance.css">
+  <link rel="stylesheet" href="css/universe.css">
+  <link rel="stylesheet" href="css/neural.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/spider-mecha.css">
+  <link rel="stylesheet" href="css/reader.css">
+</head>
+<body class="motion-standard universe-app">
+
+  <!-- Application Shell Header (§3.1) -->
+  <header class="app-header legacy-shell" hidden inert>
+    <div class="brand-section">
+      <div class="brand-logo" title="AI Knowledge OS">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="brand-title">AI Library</div>
+      <span class="brand-badge">本地知识库</span>
+    </div>
+
+    <!-- Centered Three Top Navigation Tabs (§1.1, §3.1) -->
+    <nav class="nav-tabs-container" id="nav-tabs" aria-label="Workspaces">
+      <div class="nav-tab-indicator" id="nav-indicator"></div>
+      <button class="nav-tab active" data-tab="notes" id="tab-btn-notes">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>My Notes</span>
+      </button>
+
+      <button class="nav-tab" data-tab="memory" id="tab-btn-memory">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="6" cy="6" r="3"></circle>
+          <circle cx="18" cy="6" r="3"></circle>
+          <circle cx="18" cy="18" r="3"></circle>
+          <circle cx="6" cy="18" r="3"></circle>
+          <line x1="8.5" y1="7.5" x2="15.5" y2="16.5"></line>
+          <line x1="8.5" y1="16.5" x2="15.5" y2="7.5"></line>
+        </svg>
+        <span>AI Memory</span>
+      </button>
+
+      <button class="nav-tab" data-tab="maintenance" id="tab-btn-maintenance">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <path d="M9 14l2 2 4-4"></path>
+        </svg>
+        <span>Logsheet + Backlog</span>
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="btn-primary" id="btn-add-material">＋ 添加资料</button>
+      <div class="status-badge" id="backend-status" title="Local SQLite WAL & In-Memory State Active">
+        <span class="status-dot"></span>
+        <span id="backend-status-text">Connecting…</span>
+      </div>
+
+      <button class="btn-icon" id="btn-motion-toggle" title="Cycle Motion Intensity (Quiet / Standard / Expressive)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </button>
+
+      <button class="btn-icon" id="btn-refresh-all" title="Refresh Current Workspace">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Viewport Container for the 3 Workspaces -->
+  <header class="universe-header">
+    <button class="universe-brand" id="universe-home" aria-label="回到宇宙总览"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="5"/><ellipse cx="16" cy="16" rx="14" ry="7" transform="rotate(-30 16 16)"/></svg><span>AI · LIBRARY<small>本地知识库 · 神经星图</small></span></button>
+    <nav class="neural-navigation" aria-label="知识库导航"><button id="neural-overview" aria-current="page">星图</button><button id="universe-directory-toggle" aria-expanded="false" aria-controls="universe-directory">目录</button></nav>
+    <form class="universe-search" id="universe-search-form" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="universe-search" type="search" placeholder="搜索笔记、记忆与主题" aria-label="搜索全部知识" autocomplete="off"><button type="submit">搜索</button></form>
+    <div class="universe-header-actions"><span id="universe-health" role="status">连接中</span><button class="u-button" id="universe-sync" title="重建关键词索引、向量索引与图谱投影，并刷新星图">↻ 同步</button><button class="u-button" id="universe-settings" aria-haspopup="dialog">设置</button><button class="u-button" id="universe-maintenance">维护</button><button class="u-button u-primary" id="universe-add">添加资料</button></div>
+  </header>
+  <main class="app-viewport">
+    <section id="workspace-universe" class="universe-workspace" aria-label="知识宇宙">
+      <div id="universe-stage" aria-label="三维星图；也可使用内容目录导航"></div>
+      <div id="universe-warp-loading" class="universe-warp-loading" aria-live="polite" role="status" hidden>
+        <div class="warp-loading-backdrop"></div>
+        <div class="warp-loading-card">
+          <div class="neural-core-display" aria-hidden="true">
+            <div class="neural-orbit-ring ring--gold"></div>
+            <div class="neural-orbit-ring ring--cyan"></div>
+            <div class="neural-core-nucleus"></div>
+          </div>
+          <div class="warp-status-header">
+            <span class="warp-title">知识宇宙 · 正在编织神经星图</span>
+            <span class="warp-subtitle">LOCAL KNOWLEDGE SPACE · 正在同步星系拓扑与引力连线</span>
+          </div>
+          <div class="warp-telemetry-feed" id="warp-telemetry-feed">
+            <div class="telemetry-line"><span class="msg">正在同步知识星系与外部 MCP 接入拓扑…</span></div>
+          </div>
+          <div class="warp-progress-container">
+            <div class="warp-progress-bar" id="warp-progress-bar" style="width: 25%;"></div>
+          </div>
+          <div class="warp-hud-hints">
+            <span>神经拓扑解算中</span>
+            <span>多维空间对齐</span>
+          </div>
+        </div>
+      </div>
+      <div class="universe-top">
+        <nav id="universe-path" aria-label="当前位置"></nav>
+        <div class="universe-heading-row"><button class="u-button" id="universe-exit" aria-label="返回上一级" hidden>← 返回上一级</button><h1 id="universe-title">你的知识宇宙</h1><button class="u-button" id="universe-rename" hidden>重命名</button><button class="u-button" id="universe-split" hidden>拆分散落</button><button class="u-button u-primary" id="universe-auto-cluster" title="对当前页面所属内容按前缀特征一键建立子主题并归类（仅对当前页面生效）" hidden>⚡ 一键子主题归类</button></div>
+        <p id="universe-summary" role="status">正在载入主题与内容…</p>
+        <div id="universe-cluster-banner" class="universe-cluster-banner" hidden>
+          <div class="cluster-banner-info"><span id="universe-cluster-msg"></span></div>
+          <div class="cluster-banner-actions"><button type="button" class="u-button u-primary" id="universe-cluster-open">新建子主题归类</button><button type="button" class="u-text-button" id="universe-cluster-dismiss">保持散放</button></div>
+        </div>
+        <div class="universe-topic-actions"><button class="u-text-button" id="universe-skill-related" hidden>相关资料</button></div>
+      </div>
+      <div id="universe-notice" class="universe-notice" role="status" hidden></div>
+      <aside id="neural-legend" class="neural-legend" aria-label="AI 机甲观察">
+        <div class="legend-header">
+          <div class="legend-tabs" role="tablist" aria-label="机甲观察">
+            <button type="button" class="legend-tab-btn active" id="legend-tab-mecha" role="tab" aria-selected="true" aria-controls="legend-pane-mecha"><span class="legend-tab-mecha-title">机甲观察 <span>Observers</span></span></button>
+          </div>
+          <button type="button" class="legend-collapse-btn" id="neural-legend-toggle" aria-label="折叠图例面板" title="折叠/展开面板">
+            <span class="legend-toggle-arrow" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="legend-content">
+          <!-- 主题列表已交给左侧「内容目录」，这里不再重复；保留容器供脚本写入，
+               但默认隐藏，避免两处列同一批主题造成选择困难。 -->
+          <div class="legend-pane" id="legend-pane-topics" role="tabpanel" aria-labelledby="legend-tab-mecha" hidden>
+            <div id="neural-legend-items"></div>
+            <p class="legend-pane-hint">连线用于导航与主题归属</p>
+          </div>
+          <div class="legend-pane active" id="legend-pane-mecha" role="tabpanel" aria-labelledby="legend-tab-mecha">
+            <section id="spider-mecha-panel" class="spider-mecha-panel" aria-label="AI 机甲观察">
+              <p id="spider-mecha-status" role="status">正在连接机甲活动…</p>
+              <div id="spider-mecha-list"></div>
+              <button id="spider-mecha-follow" class="spider-follow" type="button" aria-pressed="false" disabled>跟随视角</button>
+              <div id="spider-mecha-detail" class="spider-mecha-detail">选择会话投影，查看本次探索记录。</div>
+            </section>
+          </div>
+        </div>
+      </aside>
+      <aside id="universe-directory" class="universe-directory" hidden aria-label="当前内容目录">
+        <div class="directory-heading"><h2>内容目录</h2><button class="u-text-button" id="directory-auto-cluster" title="对当前页面一键子主题归类" hidden>⚡ 一键归类</button><button class="u-text-button" id="universe-directory-close">收起</button></div>
+        <p id="universe-list-status"></p>
+        <div id="universe-saved-views-bar" class="saved-views-bar">
+          <div class="saved-views-head">
+            <span>📌 保存视图</span>
+            <button type="button" class="u-text-button" id="btn-save-current-view" title="将当前搜索词或筛选保存为可复现视图">+ 保存当前查询</button>
+          </div>
+          <div id="saved-views-list" class="saved-views-pills"></div>
+        </div>
+        <details id="universe-catalogue-warnings" hidden><summary>技能清单提示</summary><p id="universe-catalogue-warning-text" style="white-space:pre-wrap;max-height:120px;overflow:auto"></p></details>
+        <div id="universe-list"></div>
+      </aside>
+      <footer class="universe-footer"><div class="universe-footer-left"><span class="neural-footer-brand">AI LIBRARY<small>LOCAL KNOWLEDGE SPACE</small></span><span class="universe-help">拖动旋转 · 滚轮缩放</span></div><div class="universe-controls"><button class="u-button" id="universe-flight-toggle" aria-pressed="false" title="操控技能空间站漫游巡航 (快捷键 F)">掌舵巡航</button><button class="u-button" id="universe-tractor-toggle" aria-pressed="true">牵引线: 开</button><button class="u-button" id="universe-pause" aria-pressed="false">暂停公转</button><button class="u-button" id="universe-save-layout" title="保存当前视图与节点布局状态 (§95.3)">保存布局</button><button class="u-button" id="universe-reset">重置视角</button></div></footer>
+      <!-- 3-1: Bridge Cockpit Holographic HUD Canopy -->
+      <div id="bridge-cockpit-overlay" class="bridge-cockpit-overlay" hidden>
+        <div class="cockpit-canopy-frame">
+          <div class="canopy-strut canopy-strut--tl"></div>
+          <div class="canopy-strut canopy-strut--tr"></div>
+          <div class="canopy-strut canopy-strut--bl"></div>
+          <div class="canopy-strut canopy-strut--br"></div>
+          <div class="canopy-arch"></div>
+        </div>
+        <div class="cockpit-hud-center">
+          <div class="cockpit-reticle">
+            <div class="reticle-outer-ring"></div>
+            <div class="reticle-core-crosshair"></div>
+            <div class="reticle-pitch-ladder">
+              <span class="pitch-bar pitch-p10"><span>+10</span></span>
+              <span class="pitch-bar pitch-zero"><span>—— 00 ——</span></span>
+              <span class="pitch-bar pitch-m10"><span>-10</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="cockpit-telemetry-panel cockpit-telemetry-left">
+          <div class="cockpit-card">
+            <div class="cockpit-card-badge">QUANTUM AVIONICS // 舰桥航电</div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">航向 HDG</span>
+              <strong class="cockpit-val" id="cockpit-telemetry-hdg">000°</strong>
+            </div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">航速 SPD</span>
+              <strong class="cockpit-val" id="cockpit-telemetry-spd">0.0 AU/s</strong>
+            </div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">机动 V-RATE</span>
+              <strong class="cockpit-val" id="cockpit-telemetry-vrate">+0.0</strong>
+            </div>
+          </div>
+        </div>
+        <div class="cockpit-telemetry-panel cockpit-telemetry-right">
+          <div class="cockpit-card">
+            <div class="cockpit-card-badge">TACTICAL SENSORS // 战术传感器</div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">引擎工况</span>
+              <strong class="cockpit-val highlight" id="cockpit-telemetry-warp">IMPULSE STANDBY</strong>
+            </div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">偏转护盾</span>
+              <strong class="cockpit-val" id="cockpit-telemetry-shields">100% NOMINAL</strong>
+            </div>
+            <div class="cockpit-telemetry-row">
+              <span class="cockpit-label">制导信标</span>
+              <strong class="cockpit-val" id="cockpit-telemetry-target">DEEP SPACE</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="station-flight-hud" id="station-flight-hud" hidden>
+        <div class="flight-hud-card">
+          <div class="flight-hud-header">
+            <div class="flight-hud-brand">
+              <span class="flight-hud-beacon"></span>
+              <strong class="flight-hud-title">技能空间站 · 战备巡航飞控</strong>
+            </div>
+            <span class="flight-hud-speed" id="flight-hud-speed">0.0 AU/s</span>
+          </div>
+          <div class="flight-hud-controls">
+            <span class="flight-hud-pill"><strong>WASD</strong> 推进转向</span>
+            <span class="flight-hud-pill"><strong>Space / C</strong> 升降机动</span>
+            <button type="button" class="flight-hud-pill flight-hud-btn" id="flight-hud-view-toggle">
+              🎥 视角: <strong id="flight-hud-view-label">第三人称追随 (V)</strong>
+            </button>
+            <button type="button" class="flight-hud-pill flight-hud-btn" id="flight-hud-shift-toggle">
+              👁️ 观察: <strong id="flight-hud-shift-label">锁定航向 (Shift)</strong>
+            </button>
+            <button type="button" class="flight-hud-pill flight-hud-exit" id="flight-hud-exit-btn">泊车退出 (Esc / F)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- Workspace 1: My Notes (Sticky Notes Grid)  -->
+    <!-- ========================================== -->
+    <section class="workspace-panel legacy-workspace" id="workspace-notes" hidden inert>
+      <div class="workspace-heading"><h1>留住想法，也保留出处。</h1><p>你的笔记、聊天记录与原始资料，在这里找到。</p></div>
+      <div class="workspace-toolbar">
+        <div class="toolbar-left">
+          <div class="search-input-group">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" class="search-input" id="notes-search-input" placeholder="Search all notes in scope..." aria-label="Search notes">
+          </div>
+            <label class="scope-picker">Scope <input id="notes-scope-input" value="default" aria-label="Notes scope"></label>
+            <span style="font-size: 12px; color: var(--text-dim);" id="notes-count-label" role="status">0 notes</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-primary" id="btn-create-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>新建笔记</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="notes-container">
+        <div class="notes-grid" id="notes-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- Workspace 2: AI Memory (Cell Network)     -->
+    <!-- ========================================== -->
+    <section class="workspace-panel" id="workspace-memory" hidden inert>
+      <div class="workspace-toolbar">
+        <div class="toolbar-left">
+          <button class="btn-secondary" id="btn-toggle-memory-sidebar" aria-expanded="true" aria-controls="memory-sidebar">浏览目录</button>
+          <div class="search-input-group">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" class="search-input" id="memory-search-input" placeholder="Search all memory in scope..." aria-label="Search memory">
+          </div>
+          <select class="search-input" id="memory-type-filter" style="width: 140px; padding-left: 10px;">
+            <option value="">全部类型</option>
+            <option value="Concept">Concept</option>
+            <option value="Entity">Entity</option>
+            <option value="Fact">Fact</option>
+            <option value="Decision">Decision</option>
+            <option value="Strategy">Strategy</option>
+            <option value="Evidence">Evidence</option>
+            <option value="Task">Task</option>
+            <option value="Conflict">Conflict</option>
+            <option value="Event">Event</option>
+            <option value="Session">会话摘要 · Session</option>
+            <option value="Source">来源引用 · Source</option>
+            <option value="Experience">经验 · Experience</option>
+            <option value="ProjectContext">项目背景</option>
+            <option value="Document">Document</option>
+            <option value="Chunk">Chunk</option>
+            <option value="Reasoning">Reasoning</option>
+            <option value="Hypothesis">Hypothesis</option>
+            <option value="Heuristic">Heuristic</option>
+            <option value="RecoveryStrategy">RecoveryStrategy</option>
+            <option value="UserContext">UserContext</option>
+          </select>
+          <label class="scope-picker">Scope <input id="memory-scope-input" value="default" aria-label="Memory scope"></label>
+          <span style="font-size: 12px; color: var(--text-dim);" id="memory-stats-label">0 nodes · 0 relations</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-secondary" id="btn-reset-view">适应视图</button>
+          <button class="btn-secondary" id="btn-reload-graph">刷新图谱</button>
+        </div>
+      </div>
+
+      <div class="memory-layout">
+        <aside class="memory-sidebar" id="memory-sidebar" aria-label="记忆浏览目录">
+          <div class="sidebar-heading"><h1>记忆目录</h1><p>从一个想法，找到它的来处。</p></div>
+          <label class="project-filter-label" for="memory-project-filter">项目标记 · 当前载入范围</label>
+          <select id="memory-project-filter" class="search-input"><option value="">全部项目</option></select>
+          <div class="sidebar-list-heading">记忆与来源 <span id="memory-list-count"></span></div>
+          <div id="memory-search-status" role="status"></div><div id="memory-node-list"></div>
+          <p class="sidebar-footnote">项目来自标题标记，不改变资料权限。集合与保存视图尚未接通。</p>
+        </aside>
+      <div class="memory-workspace" id="memory-canvas-container">
+        <canvas id="network-canvas" aria-label="Memory relation network"></canvas>
+        <div class="canvas-caption">记忆网络<span>连线来自真实关系 · 点击查看，拖动画布探索</span></div>
+
+        <!-- Floating Controls (§6.1, §6.3) -->
+        <div class="canvas-controls-overlay">
+          <div class="controls-group">
+            <button class="control-btn" id="ctrl-zoom-in" title="Zoom In">+</button>
+            <button class="control-btn" id="ctrl-zoom-out" title="Zoom Out">−</button>
+            <button class="control-btn" id="ctrl-fit-view" title="Reset Camera">⤢</button>
+            <button class="control-btn" id="ctrl-toggle-sim" title="Pause / Resume Dynamics">⏸</button>
+          </div>
+        </div>
+
+        <!-- Legend Overlay -->
+        <div class="network-legend" id="network-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#6366f1;"></span>Concept / Entity</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span>事实</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#94a3b8;"></span>会话 / 来源</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#06b6d4;"></span>决定</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#a855f7;"></span>策略</div>
+        </div>
+
+        <!-- Option B: Right-side Detail Drawer (§4, §6.4) -->
+        <aside class="memory-detail-drawer reader-panel" id="memory-detail-drawer" aria-label="记忆阅读器">
+          <div class="reader-resizer" data-resize-reader title="拖拽调整阅读器宽度"></div>
+          <header class="drawer-header reader-head">
+            <div class="reader-head-main">
+              <span class="drawer-node-type-badge reader-kind" id="drawer-node-type">概念</span>
+              <h2 class="drawer-title reader-title" id="drawer-node-title">记忆标题</h2>
+              <p class="reader-meta" id="drawer-meta"></p>
+            </div>
+            <div class="reader-head-actions">
+              <button type="button" class="btn-icon reader-expand-btn" data-toggle-reader-expand title="切换宽屏/全屏阅读" aria-label="切换宽屏阅读">⤢</button>
+              <button class="btn-icon reader-close" id="drawer-btn-close" title="关闭记忆 (Esc)" aria-label="关闭记忆">✕</button>
+            </div>
+          </header>
+
+          <nav class="reader-tabs" role="tablist" aria-label="记忆视图">
+            <button class="reader-tab active" data-drawertab="content" id="drawer-tab-content" role="tab" aria-selected="true">内容</button>
+            <button class="reader-tab" data-drawertab="source" id="drawer-tab-source" role="tab" aria-selected="false">来源</button>
+            <button class="reader-tab" data-drawertab="evolution" id="drawer-tab-evolution" role="tab" aria-selected="false">演变</button>
+          </nav>
+
+          <div class="drawer-body reader-body" id="drawer-pane-content">
+            <p class="verification-notice" id="drawer-verification-status"></p>
+            <!-- Dimensions Grid (§10) -->
+            <div class="dimensions-grid">
+              <div class="dim-card">
+                <span class="dim-label">整理阶段</span>
+                <span class="dim-value" id="drawer-dim-maturity">尚未读取</span>
+              </div>
+              <div class="dim-card">
+                <span class="dim-label">内容层次</span>
+                <span class="dim-value" id="drawer-dim-depth">D2 — Tactical</span>
+              </div>
+              <div class="dim-card">
+                <span class="dim-label">内容依据</span>
+                <span class="dim-value" id="drawer-dim-authority">EXPLICIT</span>
+              </div>
+              <div class="dim-card">
+                <span class="dim-label">Scope</span>
+                <span class="dim-value" id="drawer-dim-scope">default_scope</span>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div>
+              <div class="detail-section-title">记忆内容</div>
+              <div class="detail-content-text" id="drawer-node-content"></div>
+            </div>
+
+            <section id="memory-conflicts" aria-label="Conflict reports and review" aria-live="polite"></section>
+
+            <!-- Connected Relations -->
+            <div>
+              <div class="detail-section-title">当前视图中的关系</div>
+              <div id="drawer-relations-list" style="display:flex; flex-direction:column; gap:6px; font-size:12px;"></div>
+            </div>
+          </div>
+
+          <div class="drawer-body reader-body" id="drawer-pane-source" style="display: none;">
+            <section class="reader-section">
+              <h3 class="reader-section-title">原文与来源</h3>
+              <div class="provenance-card">
+                <div class="provenance-row">
+                  <span>来源笔记</span>
+                  <span class="provenance-val" id="drawer-prov-note">note_001</span>
+                </div>
+                <div class="provenance-row">
+                  <span>来源版本</span>
+                  <span class="provenance-val" id="drawer-prov-rev">rev_1</span>
+                </div>
+                <div class="provenance-row">
+                  <span>原文 SHA-256</span>
+                  <span class="provenance-val" id="drawer-prov-hash" style="font-size: 10px;">e3b0c44298fc1c...</span>
+                </div>
+              </div>
+            </section>
+            <section class="reader-section">
+              <h3 class="reader-section-title">时间与有效期</h3>
+              <dl class="reader-kv">
+                <div><dt>创建时间</dt><dd id="drawer-time-created">—</dd></div>
+                <div><dt>最近更新</dt><dd id="drawer-time-updated">—</dd></div>
+                <div><dt>观测时间</dt><dd id="drawer-time-observed">—</dd></div>
+                <div><dt>有效期</dt><dd id="drawer-time-valid">—</dd></div>
+              </dl>
+            </section>
+          </div>
+
+          <div class="drawer-body reader-body" id="drawer-pane-evolution" style="display: none;">
+            <section class="reader-section">
+              <h3 class="reader-section-title">版本演变</h3>
+              <p class="reader-note">每条记录都是一次真实修订。旧结论保留在这里，不会被新的总结无痕覆盖。</p>
+              <div id="drawer-revision-list"></div>
+            </section>
+          </div>
+
+          <div class="drawer-footer reader-foot">
+            <button class="btn-primary" id="drawer-btn-expand" style="flex:1;">展开相邻记忆</button>
+            <button class="btn-secondary" id="drawer-btn-view-backlog" style="flex:1;">在维护列表中找到</button>
+          </div>
+        </aside>
+      </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- Workspace 3: Logsheet + Backlog (Lists)   -->
+    <!-- ========================================== -->
+    <section class="workspace-panel" id="workspace-maintenance" hidden inert>
+      <div class="workspace-heading"><h1>每一次整理，都有迹可循。</h1><p>待核查的记忆和已经发生的操作，各自留下清晰记录。</p></div>
+      <div class="workspace-toolbar">
+        <div class="toolbar-left">
+          <!-- Sub-switcher (§7.1) -->
+          <div class="sub-switcher-container">
+            <button class="sub-switch-btn active" data-sub="backlog" id="sub-btn-backlog">维护事项</button>
+            <button class="sub-switch-btn" data-sub="logsheet" id="sub-btn-logsheet">操作日志</button>
+            <button class="sub-switch-btn" data-sub="quarantine" id="sub-btn-quarantine">待修复</button>
+            <button class="sub-switch-btn" data-sub="health" id="sub-btn-health">知识体检</button>
+            <button class="sub-switch-btn" data-sub="evolution" id="sub-btn-evolution">演进引擎</button>
+          </div>
+
+          <div class="search-input-group">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" class="search-input" id="maintenance-search-input" placeholder="搜索维护记录…">
+          </div>
+          <select class="search-input" id="maintenance-status-filter" style="width: 120px; padding-left: 10px;">
+            <option value="">All Status</option>
+            <option value="OPEN">Open</option>
+            <option value="BLOCKED">Blocked</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-secondary" id="btn-sweep-stale">加入证据复核</button>
+          <button class="btn-primary" id="btn-create-backlog">+ 新建事项</button>
+        </div>
+      </div>
+
+      <div class="maintenance-content-area" id="maintenance-container">
+        <!-- Rendered dynamically (Backlog cards or Logsheet rows) -->
+        <div id="maintenance-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+      </div>
+
+      <!-- Option B: Right-side Maintenance Detail Drawer (§4, §7.1) -->
+      <aside class="maintenance-detail-drawer" id="maintenance-detail-drawer">
+        <div class="drawer-header">
+          <div class="drawer-title-area">
+            <span class="status-pill status-open" id="maint-drawer-status-pill">OPEN</span>
+            <h2 class="drawer-title" id="maint-drawer-title">Maintenance Record</h2>
+          </div>
+          <button class="btn-icon" id="maint-drawer-btn-close" title="Close Drawer (Esc)">✕</button>
+        </div>
+
+        <div class="drawer-body">
+          <div class="dimensions-grid">
+            <div class="dim-card">
+              <span class="dim-label">Item Type / Operation</span>
+              <span class="dim-value" id="maint-drawer-type">STALE_EVIDENCE_SWEEP</span>
+            </div>
+            <div class="dim-card">
+              <span class="dim-label">Priority / Result</span>
+              <span class="dim-value" id="maint-drawer-priority">HIGH</span>
+            </div>
+            <div class="dim-card">
+              <span class="dim-label">Target Nodes</span>
+              <span class="dim-value" id="maint-drawer-targets" style="font-size:11px; font-family:monospace;">mem_001</span>
+            </div>
+            <div class="dim-card">
+              <span class="dim-label">Scope</span>
+              <span class="dim-value" id="maint-drawer-scope">default_scope</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="detail-section-title">Description / Details</div>
+            <div class="detail-content-text" id="maint-drawer-desc"></div>
+          </div>
+
+          <details>
+            <summary class="detail-section-title">Original record and technical details</summary>
+            <pre class="json-metadata-viewer" id="maint-drawer-json">{}</pre>
+          </details>
+
+          <div id="maint-drawer-actions-container">
+            <div class="detail-section-title">Transition Status</div>
+            <div class="status-action-row">
+              <button class="btn-status-resolve" id="maint-act-resolve">✔ 标记为已解决</button>
+              <button class="btn-status-block" id="maint-act-block">⛔ 标记为受阻</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+  </main>
+
+  <dialog id="universe-topic-dialog" class="universe-dialog" aria-labelledby="universe-topic-form-title">
+    <form id="universe-topic-form"><h2 id="universe-topic-form-title">新建主题</h2><p id="universe-topic-context"></p><label for="universe-topic-name">主题名称</label><input id="universe-topic-name" required maxlength="120" autocomplete="off"><p id="universe-topic-error" role="alert"></p><div class="u-form-actions"><button type="button" class="u-button" id="universe-topic-cancel">取消</button><button class="u-button u-primary" id="universe-topic-save" type="submit">保存主题</button></div></form>
+  </dialog>
+  <dialog id="universe-membership-dialog" class="universe-dialog" aria-labelledby="universe-membership-title"><h2 id="universe-membership-title">整理主题归属</h2><p id="universe-membership-item"></p><p class="u-muted">同一内容可以出现在多个主题。移出只移除归属，保留原文。</p><div id="universe-membership-list"></div><p id="universe-membership-error" role="alert"></p><div class="u-form-actions"><button class="u-button" id="universe-membership-close">完成</button></div></dialog>
+  <dialog id="material-dialog" class="material-dialog" aria-labelledby="material-dialog-title">
+    <div class="material-dialog-header"><h2 id="material-dialog-title">添加资料</h2><button class="btn-icon" id="material-close" aria-label="关闭添加资料">✕</button></div>
+    <p>先保留原文与多媒体附件，需要时再提取成记忆。</p>
+    <button class="material-choice" id="material-new-note">
+      <strong>📝 写一条笔记</strong>
+      <span>支持 Markdown 富文本排版、代码高亮，并可直接粘贴或插入图片、PDF、音视频。</span>
+      <span aria-hidden="true">→</span>
+    </button>
+    <button class="material-choice" id="material-upload-media-btn" type="button">
+      <strong>🖼️ 上传多媒体（PDF / 图片 / 视频 / 音频）</strong>
+      <span>支持 PDF 文档预览与正文检索、高清图片全屏缩放、视频倍速与画中画播放。</span>
+      <span aria-hidden="true">→</span>
+    </button>
+    <input type="file" id="material-media-input" multiple accept=".pdf,.png,.jpg,.jpeg,.jfif,.gif,.webp,.svg,.mp4,.webm,.mov,.mp3,.wav,.ogg" hidden />
+    <div class="material-web-box" id="material-web-box">
+      <div class="material-web-title">🌐 导入网页或文本文件（.md / .txt / .html）</div>
+      <div class="material-web-row">
+        <input type="url" id="material-url-input" placeholder="输入 https:// 网页地址抓取正文预览…" />
+        <button type="button" class="u-button u-primary" id="material-url-submit">抓取预览</button>
+        <button type="button" class="u-button" id="material-textfile-btn">选择文件</button>
+        <input type="file" id="material-textfile-input" accept=".txt,.md,.html,.htm" hidden />
+      </div>
+      <p class="material-web-status" id="material-intake-status" hidden></p>
+      <div id="material-preview-card" class="material-preview-card" hidden>
+        <div class="material-preview-head">
+          <strong id="material-preview-title">入库预览与摘录确认 (§98.2)</strong>
+          <span id="material-selection-range" class="settings-hint">已选全文</span>
+        </div>
+        <textarea id="material-preview-text" class="note-editor-textarea" readonly rows="6" style="max-height:160px;font-size:12px;" title="鼠标划选可仅入库指定段落，不划选默认入库全文"></textarea>
+        <div class="material-preview-meta" style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <label style="font-size:12px;color:var(--text-muted);">归入主题（可选）：</label>
+          <div id="material-preview-topics" style="display:flex;flex-wrap:wrap;gap:6px;max-height:72px;overflow:auto;"></div>
+          <input type="text" id="material-preview-comment" class="search-input" placeholder="添加入库批注/备注（与原文分开保存）…" />
+        </div>
+        <div class="u-form-actions" style="margin-top:10px;">
+          <button type="button" class="u-button" id="material-preview-cancel">取消预览</button>
+          <button type="button" class="u-button u-primary" id="material-preview-confirm">确认入库</button>
+        </div>
+      </div>
+    </div>
+    <p class="material-help">所有导入的文档、网页与多媒体均以 SHA-256 内容寻址保存在本地；保存资料不会自动成为已验证记忆。</p>
+  </dialog>
+
+  <!-- ========================================== -->
+  <!-- Option B: Centered Enlarged Note Modal     -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="note-modal-backdrop">
+    <div class="note-modal-dialog reader-panel" role="dialog" aria-modal="true" aria-label="笔记阅读器">
+      <div class="reader-resizer" data-resize-reader title="拖拽左边缘调整阅读器宽度"></div>
+      <header class="modal-header reader-head">
+        <div class="reader-head-main">
+          <div class="reader-head-toprow">
+            <span class="reader-kind reader-kind--note" id="note-reader-kind">笔记</span>
+            <div class="reader-mode-switch" id="note-view-mode-group" role="group" aria-label="阅读与编辑模式">
+              <button type="button" class="reader-mode-btn active" data-note-mode="read" title="富文本、对话气泡与多媒体预览模式">📖 阅读</button>
+              <button type="button" class="reader-mode-btn" data-note-mode="split" title="左侧编辑源码，右侧实时预览">◫ 分栏</button>
+              <button type="button" class="reader-mode-btn" data-note-mode="edit" title="编辑 Markdown 源码与粘贴多媒体">✏️ 编辑</button>
+            </div>
+          </div>
+          <textarea class="modal-title-input reader-title" id="note-edit-title" rows="1" aria-label="笔记标题" placeholder="笔记标题"></textarea>
+          <p class="reader-meta" id="note-reader-meta"></p>
+        </div>
+        <div class="reader-head-actions">
+          <button type="button" class="btn-icon reader-media-insert-btn" id="btn-insert-media" title="插入 PDF、图片、视频或音频附件" aria-label="插入多媒体">📎</button>
+          <input type="file" id="note-media-file-input" multiple accept=".pdf,.png,.jpg,.jpeg,.jfif,.gif,.webp,.svg,.mp4,.webm,.mov,.mp3,.wav,.ogg" hidden />
+          <button type="button" class="btn-icon reader-expand-btn" data-toggle-reader-expand title="切换宽屏/居中全屏阅读" aria-label="切换宽屏阅读">⤢</button>
+          <button class="btn-icon reader-close" id="note-modal-close" title="关闭笔记 (Esc)" aria-label="关闭笔记">✕</button>
+        </div>
+      </header>
+
+      <nav class="modal-tabs reader-tabs" role="tablist" aria-label="笔记视图">
+        <button class="modal-tab-btn reader-tab active" data-modaltab="editor" id="modal-tab-editor" role="tab" aria-selected="true">内容</button>
+        <button class="modal-tab-btn reader-tab" data-modaltab="source" id="modal-tab-source" role="tab" aria-selected="false">来源</button>
+        <button class="modal-tab-btn reader-tab" data-modaltab="analysis" id="modal-tab-analysis" role="tab" aria-selected="false">演变</button>
+      </nav>
+
+      <div class="modal-body reader-body" id="modal-body-editor" data-mode="read">
+        <div class="note-rendered-pane" id="note-rendered-view" aria-live="polite"></div>
+        <textarea class="note-editor-textarea" id="note-edit-content" aria-label="笔记内容" placeholder="写下想法，粘贴 Markdown 资料，或直接粘贴/拖拽图片、PDF、视频…"></textarea>
+      </div>
+
+      <div class="modal-body reader-body" id="modal-body-source" style="display: none;">
+        <section class="reader-section">
+          <h3 class="reader-section-title">来源与归属</h3>
+          <dl class="reader-kv">
+            <div><dt>笔记 ID</dt><dd id="note-source-id">—</dd></div>
+            <div><dt>作者</dt><dd id="note-source-author">—</dd></div>
+            <div><dt>范围</dt><dd id="note-source-scope">—</dd></div>
+            <div><dt>创建时间</dt><dd id="note-source-created">—</dd></div>
+            <div><dt>所属主题</dt><dd id="note-source-topics">—</dd></div>
+          </dl>
+        </section>
+        <section class="reader-section">
+          <h3 class="reader-section-title">当前版本指纹</h3>
+          <p class="reader-note">SHA-256 由本机对已保存版本计算，用来确认你正在读的是哪一份原文。它不证明内容为真。</p>
+          <code class="reader-hash" id="note-immutable-hash">—</code>
+        </section>
+        <section class="reader-section" id="note-intake-section">
+          <h3 class="reader-section-title">入库溯源与用户批注 (§98.4–98.5)</h3>
+          <div id="note-intake-details" class="reader-note">正在读取入库溯源与批注…</div>
+          <div id="note-comments-list" style="display:flex;flex-direction:column;gap:6px;margin-top:8px;"></div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <input type="text" id="note-comment-input" class="search-input" style="flex:1;" placeholder="添加独立于原文的用户批注…" />
+            <button type="button" class="btn-secondary" id="note-comment-submit">添加批注</button>
+          </div>
+        </section>
+        <section class="reader-section" id="note-lineage-section">
+          <h3 class="reader-section-title">对话血缘与派生记忆 (§94)</h3>
+          <div id="note-lineage-details" class="reader-note">正在查询对话血缘与派生链…</div>
+        </section>
+      </div>
+
+      <div class="modal-body reader-body" id="modal-body-analysis" style="display: none;">
+        <div class="analysis-container">
+          <div class="analysis-banner">
+            <strong>本机摘要 · 未连接模型。</strong>这里取已保存版本的第一行非空文字供你审核。接受后会记录为 L2 未核验记忆，原文与记忆各自独立保存。
+          </div>
+          <div id="analysis-claims-list" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Claims rendered here -->
+          </div>
+        </div>
+      </div>
+
+      <footer class="modal-footer reader-foot">
+        <div class="revision-history-picker">
+          <span>版本</span>
+          <select class="revision-select" id="note-revision-select"></select>
+        </div>
+
+        <div class="reader-foot-actions">
+          <button class="btn-secondary" id="btn-trigger-ai-analysis">提取首行候选</button>
+          <button class="btn-primary" id="btn-save-note">保存版本</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <dialog id="universe-skill-dialog" class="universe-dialog" aria-labelledby="universe-skill-title">
+    <h2 id="universe-skill-title"></h2><p id="universe-skill-description"></p>
+    <div id="universe-skill-locations" style="white-space:pre-wrap;overflow-wrap:anywhere"></div>
+    <p>此处展示本机技能文件，不代表已在每个 Agent 中启用。</p>
+    <div class="u-form-actions">
+      <button type="button" class="u-button u-primary" id="universe-skill-download" hidden>📦 下载完整技能包 (.zip)</button>
+      <button class="u-button" id="universe-skill-close">关闭</button>
+    </div>
+  </dialog>
+
+  <dialog id="universe-cluster-dialog" class="universe-dialog" aria-labelledby="universe-cluster-title">
+    <div class="universe-dialog-head">
+      <h2 id="universe-cluster-title">相似内容归类推荐 (&gt;5条)</h2>
+      <button type="button" class="u-text-button" id="universe-cluster-close">关闭</button>
+    </div>
+    <p class="u-dialog-desc">在当前主题内检测到以下相似内容，可一键新建子主题归类并建立多层级子目录：</p>
+    <div id="universe-cluster-list" class="universe-cluster-list"></div>
+    <div class="u-form-actions">
+      <button type="button" class="u-button" id="universe-cluster-cancel">取消</button>
+    </div>
+  </dialog>
+  <!-- Settings Panel (local-owner boundary) -->
+  <dialog id="settings-dialog" class="universe-dialog settings-dialog" aria-labelledby="settings-title">
+    <div class="settings-head">
+      <h2 id="settings-title">设置</h2>
+      <button type="button" class="btn-icon" id="settings-close" aria-label="关闭设置">✕</button>
+    </div>
+    <div class="settings-tabs" role="tablist">
+      <button type="button" class="settings-tab active" data-settings-tab="access" role="tab">🔑 连接权限</button>
+      <button type="button" class="settings-tab" id="settings-tab-rules" data-settings-tab="rules" role="tab" aria-controls="settings-pane-rules" aria-selected="false">📋 Agent 使用规则</button>
+      <button type="button" class="settings-tab" data-settings-tab="system" role="tab">⚙️ 系统与索引</button>
+      <button type="button" class="settings-tab" data-settings-tab="data" role="tab">💾 数据与备份</button>
+      <button type="button" class="settings-tab" data-settings-tab="automation" role="tab">🔔 通知与自动化</button>
+      <button type="button" class="settings-tab" data-settings-tab="appearance" role="tab">🎨 界面与体验</button>
+      <button type="button" class="settings-tab" data-settings-tab="about" role="tab">ℹ️ 更新与关于</button>
+    </div>
+    <div class="settings-body">
+      <section class="settings-pane" id="settings-pane-rules" data-settings-pane="rules" role="tabpanel" aria-labelledby="settings-tab-rules">
+        <div class="settings-pane-head"><h3>Agent 使用规则</h3><span id="settings-rules-version" class="settings-hint"></span></div>
+        <p class="settings-note">所有连接本库的 Agent 使用同一份规则。保存后发布新版本，Agent 下一次 MCP 调用会收到更新；自动触发仍需客户端支持相应 hooks。</p>
+        <p id="settings-rules-status" class="settings-note" role="status" aria-live="polite">正在读取规则…</p>
+        <form id="settings-rules-form">
+          <div class="usage-rule-fields"></div>
+          <div class="usage-rule-actions">
+            <button type="button" class="u-button" id="settings-rules-refresh">重新读取</button>
+            <button type="button" class="u-text-button" id="settings-rules-defaults" disabled>恢复问卷默认</button>
+            <button type="submit" class="u-button u-primary" id="settings-rules-save" disabled>保存并更新</button>
+          </div>
+        </form>
+        <details class="usage-rule-group"><summary>固定保护条件</summary><ul id="settings-rules-fixed" class="usage-rule-list"></ul><p class="settings-hint">这些是 Agent 应遵守的使用约定；现有完全访问权限尚不等于服务端的单次用户审批保护。</p></details>
+        <details class="usage-rule-group"><summary>规则发送状态</summary><p class="settings-note">响应附带规则只证明提供了该版本，不证明 Agent 已读取或执行。升级前启动的 MCP 进程需先重新连接。</p><div id="settings-rules-deliveries" class="settings-audit"></div></details>
+        <details class="usage-rule-group"><summary>版本记录</summary><div id="settings-rules-history" class="settings-audit"></div></details>
+        <details class="usage-rule-group"><summary>可考虑加入的规则</summary><p class="settings-note">以下是候选建议，尚未启用；你选择后再加入规则。</p><dl id="settings-rules-suggestions" class="usage-rule-suggestions"></dl></details>
+      </section>
+      <section class="settings-pane active" data-settings-pane="access">
+        <div class="model-hub-card">
+          <div class="model-hub-header">
+            <div class="model-hub-badge">
+              <span class="hub-status-dot"></span>
+              <strong>外部 AI 模型中枢 (Model-Agnostic Hub)</strong>
+            </div>
+            <span class="model-hub-tag">MCP 动态操控</span>
+          </div>
+          <p class="model-hub-desc">
+            本知识库采用<strong>模型无关架构 (Model-Agnostic)</strong>：不绑定任何内置单一模型，由使用者所连接的外部 AI Agent（如 Claude Desktop、Gemini CLI / Antigravity、DeepSeek Harness 等）通过 MCP 协议全权调度控制。
+          </p>
+          <div class="model-hub-metrics">
+            <div class="model-metric-pill">
+              <span class="metric-label">已累计节省 Token</span>
+              <strong class="metric-value" id="model-metric-saved-tokens">~0</strong>
+            </div>
+            <div class="model-metric-pill">
+              <span class="metric-label">Prompt Cache 命中率</span>
+              <strong class="metric-value" id="model-metric-cache-hit">0.0%</strong>
+            </div>
+            <div class="model-metric-pill">
+              <span class="metric-label">传输精简 (Lean)</span>
+              <strong class="metric-value" id="model-metric-lean-ratio">-50.8%</strong>
+            </div>
+            <div class="model-metric-pill">
+              <span class="metric-label">首字延迟预估减免 (TTFT)</span>
+              <strong class="metric-value" id="model-metric-ttft-saved">~0 ms</strong>
+            </div>
+          </div>
+        </div>
+
+        <p class="settings-note">这里管理外部 AI Agent 通过 MCP 连接本库的读写权限。授权在客户端首次获批启动时创建；修改立即生效，但已经返回给客户端的数据无法追溯收回。</p>
+        <div class="settings-pane-head"><h3>连接授权</h3><button type="button" class="u-text-button" id="settings-access-refresh">刷新</button></div>
+        <p id="settings-access-status" class="settings-hint" role="status"></p>
+        <div id="settings-access-list"></div>
+        <div class="settings-pane-head"><h3>授权变更记录</h3></div>
+        <div id="settings-access-audit" class="settings-audit"></div>
+
+        <div class="settings-pane-head">
+          <h3>单次写入审批票据 (§55)</h3>
+          <div>
+            <button type="button" class="u-text-button" id="settings-approvals-refresh">刷新</button>
+            <button type="button" class="u-button" id="settings-approval-issue-btn">+ 签发审批票据</button>
+          </div>
+        </div>
+        <p class="settings-hint">供外部 Agent 执行受保护写操作（如晋升候选记忆或激活演进策略）的单次绑定票据。</p>
+        <div id="settings-approvals-list" class="settings-audit"></div>
+
+        <div class="settings-pane-head">
+          <h3>Agent 配置文件与绑定预览 (§91.5)</h3>
+          <button type="button" class="u-button" id="settings-profile-create-btn">+ 新建客户端配置</button>
+        </div>
+        <p class="settings-hint">生成 Claude / Cursor / Codex / Gemini 等客户端配置变更计划与 Diff 预览（只读预览，不直接覆盖宿主文件）。</p>
+        <div id="settings-profiles-list" class="settings-audit"></div>
+      </section>
+
+      <section class="settings-pane" data-settings-pane="system">
+        <div class="settings-pane-head"><h3>系统信息</h3></div>
+        <div id="settings-system-grid" class="settings-kv-grid"></div>
+        <div class="settings-pane-head"><h3>数据统计</h3></div>
+        <div id="settings-count-grid" class="settings-count-grid"></div>
+        <div class="settings-pane-head"><h3>检索索引</h3></div>
+        <p id="settings-index-status" class="settings-hint"></p>
+        <div class="settings-actions">
+          <button type="button" class="u-button" id="settings-rebuild-keyword">重建关键词索引</button>
+          <button type="button" class="u-button" id="settings-rebuild-vector">重建向量索引</button>
+        </div>
+        <p class="settings-note">重建会持有 SQLite 写锁，数据量大时请在空闲时执行。索引是派生数据，重建不会删除原文或记忆。</p>
+
+        <div class="settings-pane-head"><h3>知识图谱投影 (§95)</h3></div>
+        <p id="settings-projection-status" class="settings-hint">正在读取图谱投影状态…</p>
+        <div class="settings-actions">
+          <button type="button" class="u-button" id="settings-advance-projection">增量推进投影 (Pump)</button>
+          <button type="button" class="u-button" id="settings-rebuild-projection">全量重建图谱投影</button>
+        </div>
+
+        <div class="settings-pane-head"><h3>每日 Token 预算配额 (§36–48)</h3></div>
+        <p id="settings-token-budget-status" class="settings-hint">正在读取预算状态…</p>
+        <div class="settings-actions" style="align-items:center;gap:8px;">
+          <input type="number" id="settings-token-quota-input" class="settings-input" min="0" max="1000000000" step="1000" style="width:160px;" placeholder="每日 Token 配额" />
+          <button type="button" class="u-button u-primary" id="settings-token-quota-save">更新每日配额</button>
+        </div>
+      </section>
+
+      <section class="settings-pane" data-settings-pane="data">
+        <div class="settings-pane-head"><h3>备份快照</h3><button type="button" class="u-text-button" id="settings-backup-refresh">刷新</button></div>
+        <p class="settings-note">备份是一份一致性快照：数据库 + 被引用的原始文件，每个文件带 SHA-256 校验。创建在数据目录之外，不会覆盖任何现有内容。</p>
+        <div class="settings-actions">
+          <button type="button" class="u-button u-primary" id="settings-backup-create">立即创建备份</button>
+        </div>
+        <p id="settings-backup-status" class="settings-hint" role="status"></p>
+        <div id="settings-backup-list" class="settings-backup-list"></div>
+
+        <div class="settings-pane-head"><h3>导出与整理</h3></div>
+        <div class="settings-actions">
+          <button type="button" class="u-button" id="settings-export">导出为 JSON</button>
+          <button type="button" class="u-button" id="settings-vacuum">压缩数据库（VACUUM）</button>
+        </div>
+        <p class="settings-hint">导出包含当前笔记、记忆节点与关系，用于迁移或离线存档；VACUUM 会重写数据库文件回收空间，需要短暂独占写入。</p>
+
+        <div class="settings-pane-head"><h3>目录</h3></div>
+        <div id="settings-data-paths" class="settings-kv-grid"></div>
+      </section>
+
+      <section class="settings-pane" data-settings-pane="automation">
+        <p class="settings-note">这些开关保存在本机 preferences.json，只影响本机行为，不会改变任何已授权 Agent 的权限。</p>
+        <p class="settings-note">检索索引由后台 worker 自动维护：未就绪时全量重建，就绪后增量跟随入库事件（也会比对 canonical 修订以捕获没有 outbox 的写入）。不需要开关，需要强制全量重建时用「系统与索引」里的按钮。</p>
+        <label class="settings-switch" for="settings-notify-ingest"><input type="checkbox" id="settings-notify-ingest"><span>新资料入库时提示</span></label>
+        <label class="settings-switch" for="settings-notify-conflict"><input type="checkbox" id="settings-notify-conflict"><span>检测到记忆冲突时提示</span></label>
+        <div class="settings-pane-head"><h3>自动入库</h3></div>
+        <label class="settings-switch" for="settings-auto-record"><input type="checkbox" id="settings-auto-record"><span>允许会话结束后自动记录到知识库</span></label>
+        <p class="settings-hint">开启后，客户端可在会话结束时把摘要写入本库（写入方显示为 mcp-agent:&lt;principal&gt;，不冒充用户）。真正触发还需要在客户端配置 Hook；本开关只表示本库是否接受。</p>
+        <p id="settings-automation-status" class="settings-hint" role="status"></p>
+      </section>
+
+      <section class="settings-pane" data-settings-pane="appearance">
+        <div class="settings-pane-head"><h3>主题与排版</h3></div>
+        <label class="settings-field" for="settings-theme">
+          <span>面板配色</span>
+          <select class="settings-select" id="settings-theme">
+            <option value="dark">暗色（默认）</option>
+            <option value="light">浅色面板</option>
+          </select>
+        </label>
+        <label class="settings-field" for="settings-font-scale">
+          <span>界面字号</span>
+          <select class="settings-select" id="settings-font-scale">
+            <option value="small">小</option>
+            <option value="standard">标准</option>
+            <option value="large">大</option>
+          </select>
+        </label>
+
+        <div class="settings-pane-head"><h3>动效与 3D</h3></div>
+        <label class="settings-field" for="settings-motion">
+          <span>动效强度</span>
+          <select class="settings-select" id="settings-motion">
+            <option value="quiet">安静</option>
+            <option value="standard">标准</option>
+            <option value="expressive">丰富</option>
+          </select>
+        </label>
+        <label class="settings-field" for="settings-universe-quality">
+          <span>3D 宇宙画质</span>
+          <select class="settings-select" id="settings-universe-quality">
+            <option value="high">高（默认）</option>
+            <option value="medium">中</option>
+            <option value="low">低（省电）</option>
+          </select>
+        </label>
+        <p class="settings-hint">系统开启“减少动态”时仍会优先遵循系统设置。画质越低，星点与光效越少，适合集成显卡或长时间停留。</p>
+        <label class="settings-switch" for="settings-tractor"><input type="checkbox" id="settings-tractor"><span>显示主题牵引线</span></label>
+        <label class="settings-switch" for="settings-pause"><input type="checkbox" id="settings-pause"><span>暂停公转</span></label>
+        <p id="settings-ui-status" class="settings-hint" role="status"></p>
+      </section>
+
+      <section class="settings-pane" data-settings-pane="about">
+        <div class="settings-pane-head"><h3>版本与环境</h3><button type="button" class="u-text-button" id="settings-about-refresh">刷新</button></div>
+        <div id="settings-about-grid" class="settings-kv-grid"></div>
+        <p class="settings-note">AI Library · 本地知识库。笔记原文与记忆保存在本机 SQLite，外部 Agent 通过 MCP 只读或读写接入，理解与嵌入由 Agent 提供。</p>
+
+        <div class="settings-pane-head"><h3>路径</h3></div>
+        <div id="settings-about-paths" class="settings-kv-grid"></div>
+
+        <div class="settings-pane-head"><h3>MCP 连接配置（示例）</h3><button type="button" class="u-text-button" id="settings-copy-mcp">复制</button></div>
+        <pre id="settings-mcp-config" class="settings-pre"></pre>
+        <p class="settings-note">把 principal 改成你的 Agent 名称；scope 在启动时固定。本页不会修改任何外部客户端配置。</p>
+      </section>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- Modular JavaScript Engine -->
+  <script type="module" src="js/app.js?v=20261012b"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "ai-library",
+  "version": "1.0.0",
+  "description": "将本地 AI Library 接入 WorkBuddy：只读检索记忆库与用户笔记、候选与工作交接管理，以及本地文本向量化。",
+  "author": {
+    "name": "杰"
+  },
+  "category": "mcp-app",
+  "keywords": [
+    "ai-library",
+    "memory",
+    "retrieval",
+    "embedding",
+    "mcp-app",
+    "local",
+    "workbuddy"
+  ],
+  "hooks": "./hooks/hooks.json",
+  "workbuddy": {
+    "runtimeOwner": "agent-cli"
+  }
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+python scripts/git-hooks/pre_commit.py "$@"

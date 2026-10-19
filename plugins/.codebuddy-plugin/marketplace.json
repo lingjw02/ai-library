@@ -1,0 +1,15 @@
+{
+  "name": "ai-library-local",
+  "description": "AI Library 本地插件市场（本机 owner 自用，非公开分发）",
+  "owner": {
+    "name": "杰"
+  },
+  "plugins": [
+    {
+      "name": "ai-library",
+      "source": "./workbuddy-ai-library",
+      "version": "1.0.0",
+      "description": "将本地 AI Library 接入 WorkBuddy：只读检索记忆库与用户笔记、候选与工作交接管理、本地文本向量化，并支持每轮证据自动预取。"
+    }
+  ]
+}

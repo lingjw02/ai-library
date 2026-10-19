@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "ai-memory-library": {
+      "type": "stdio",
+      "command": "D:/02_Development_Tools/AI library/.venv/Scripts/python.exe",
+      "args": [
+        "D:/02_Development_Tools/AI library/scripts/run_mcp.py",
+        "--data-dir",
+        "D:/02_Development_Tools/AI library/data",
+        "--scope",
+        "default",
+        "--principal",
+        "workbuddy"
+      ],
+      "cwd": "D:/02_Development_Tools/AI library",
+      "defer_loading": true
+    },
+    "ai-library-embedding": {
+      "type": "stdio",
+      "command": "D:/02_Development_Tools/AI library/.venv/Scripts/python.exe",
+      "args": [
+        "D:/02_Development_Tools/AI library/scripts/run_embedding_mcp.py"
+      ],
+      "cwd": "D:/02_Development_Tools/AI library",
+      "defer_loading": true
+    }
+  }
+}

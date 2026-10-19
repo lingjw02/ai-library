@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 2,
+  "aasCoreVersion": "19.8.0",
+  "philosophy": "The agent inspects and chooses. AAS records and validates. You control.",
+  "stats": {
+    "skipped_duplicates": 75,
+    "fused_skills": 39,
+    "unique_skills": 3083,
+    "mcp_count": 9,
+    "total_items": 3092
+  },
+  "enriched_skill_md_files": [
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\brainstorming\\SKILL.md",
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\dispatching-parallel-agents\\SKILL.md",
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\executing-plans\\SKILL.md",
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\finishing-a-development-branch\\SKILL.md",
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\output-skill\\SKILL.md",
+    "D:\\02_Development_Tools\\AI library\\.agents\\skills\\receiving-code-review\\SKILL.md",
+    "C:\\Users\\ling5\\.agents\\skills\\cli-anything-gimp\\SKILL.md",
+    "C:\\Users\\ling5\\.agents\\skills\\cli-hub-meta-skill\\SKILL.md",
+    "C:\\Users\\ling5\\.agents\\skills\\design-taste-frontend\\SKILL.md",
+    "C:\\Users\\ling5\\.agents\\skills\\find-skills\\SKILL.md"
+  ],
+  "domain_fleet_distribution": {
+    "探索思考 / 认知决策舰队": 144,
+    "安全防御 / 威胁审计合规舰队": 297,
+    "动效 / 多媒体视听与 3D 舰队": 89,
+    "后端服务 / 分布式与 API 架构舰队": 411,
+    "商业增长 / 营销与财务战略舰队": 469,
+    "UI / 前端与视觉体验舰队": 258,
+    "Agent / 多智能体编排舰队": 161,
+    "质量保障 / 自动化测试与浏览器舰队": 105,
+    "AI 模型 / 机器学习与评估舰队": 222,
+    "移动终端 / 跨端应用开发舰队": 44,
+    "DevOps / 工具链与发布部署舰队": 275,
+    "数据科学 / 知识检索与记忆舰队": 233,
+    "开发者效能 / 扩展元技能舰队": 62,
+    "代码重构 / 架构整洁与审查舰队": 51,
+    "云原生 / 基础设施与 SRE 舰队": 144,
+    "创意写作 / 文档与提示词工程舰队": 127
+  },
+  "fused_skills_evidence": [
+    {
+      "canonical_id": "accessibility-patterns",
+      "title": "accessibility-patterns",
+      "domain": "UI / 前端与视觉体验舰队",
+      "fused_from": [
+        "accessibility-patterns",
+        "accessibility-testing"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "agent-memory",
+      "title": "agent-memory",
+      "domain": "AI 模型 / 机器学习与评估舰队",
+      "fused_from": [
+        "agent-memory",
+        "agent-memory-mcp"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "artifact-template-business-review",
+      "title": "artifact-template-business-review",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "fused_from": [
+        "artifact-template-business-review",
+        "artifact-template-operating-review"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "artifact-template-legal-memorandum",
+      "title": "artifact-template-legal-memorandum",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "fused_from": [
+        "artifact-template-legal-memorandum",
+        "artifact-template-strategy-memorandum"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "artifact-template-simple-theme-mode",
+      "title": "artifact-template-simple-dark-mode",
+      "domain": "Agent / 多智能体编排舰队",
+      "fused_from": [
+        "artifact-template-simple-dark-mode",
+        "artifact-template-simple-light-mode"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "ask-multi-agent-consult",
+      "title": "ask-claude",
+      "domain": "Agent / 多智能体编排舰队",
+      "fused_from": [
+        "ask-claude",
+        "ask-gemini"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-ai-agents-persistent-java",
+      "title": "azure-ai-agents-persistent-java",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-ai-agents-persistent-java",
+        "azure-ai-agents-persistent-dotnet"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-ai-document-intelligence-ts",
+      "title": "azure-ai-document-intelligence-ts",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-ai-document-intelligence-ts",
+        "azure-ai-document-intelligence-dotnet"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-ai-projects-ts",
+      "title": "azure-ai-projects-ts",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-ai-projects-ts",
+        "azure-ai-projects-java",
+        "azure-ai-projects-dotnet"
+      ],
+      "locations_count": 3
+    },
+    {
+      "canonical_id": "azure-ai-voicelive-py",
+      "title": "azure-ai-voicelive-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-ai-voicelive-py",
+        "azure-ai-voicelive-ts",
+        "azure-ai-voicelive-dotnet"
+      ],
+      "locations_count": 3
+    },
+    {
+      "canonical_id": "azure-appconfiguration-py",
+      "title": "azure-appconfiguration-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-appconfiguration-py",
+        "azure-appconfiguration-ts",
+        "azure-appconfiguration-java"
+      ],
+      "locations_count": 3
+    },
+    {
+      "canonical_id": "azure-identity-py",
+      "title": "azure-identity-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-identity-py",
+        "azure-identity-rust"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-keyvault-keys-rust",
+      "title": "azure-keyvault-keys-rust",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-keyvault-keys-rust",
+        "azure-keyvault-secrets-rust"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-monitor-opentelemetry-py",
+      "title": "azure-monitor-opentelemetry-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-monitor-opentelemetry-py",
+        "azure-monitor-opentelemetry-exporter-py"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-monitor-query-py",
+      "title": "azure-monitor-query-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-monitor-query-py",
+        "azure-monitor-query-java"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-resource-manager-mysql-dotnet",
+      "title": "azure-resource-manager-mysql-dotnet",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-resource-manager-mysql-dotnet",
+        "azure-resource-manager-postgresql-dotnet"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-resource-manager-sql-dotnet",
+      "title": "azure-resource-manager-sql-dotnet",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-resource-manager-sql-dotnet",
+        "azure-resource-manager-redis-dotnet",
+        "azure-resource-manager-cosmosdb-dotnet",
+        "azure-resource-manager-playwright-dotnet",
+        "azure-resource-manager-durabletask-dotnet"
+      ],
+      "locations_count": 5
+    },
+    {
+      "canonical_id": "azure-servicebus-ts",
+      "title": "azure-servicebus-ts",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-servicebus-ts",
+        "azure-servicebus-dotnet"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "azure-storage-blob-py",
+      "title": "azure-storage-blob-py",
+      "domain": "云原生 / 基础设施与 SRE 舰队",
+      "fused_from": [
+        "azure-storage-blob-py",
+        "azure-storage-blob-ts",
+        "azure-storage-blob-rust"
+      ],
+      "locations_count": 3
+    },
+    {
+      "canonical_id": "code-review",
+      "title": "code-review",
+      "domain": "代码重构 / 架构整洁与审查舰队",
+      "fused_from": [
+        "code-review",
+        "review"
+      ],
+      "locations_count": 4
+    },
+    {
+      "canonical_id": "flat-design",
+      "title": "flat-design",
+      "domain": "UI / 前端与视觉体验舰队",
+      "fused_from": [
+        "flat-design",
+        "flat-design-2"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "hunt-xss",
+      "title": "hunt-xss",
+      "domain": "安全防御 / 威胁审计合规舰队",
+      "fused_from": [
+        "hunt-xss",
+        "hunt-ssrf"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "implement-plan",
+      "title": "implement_plan",
+      "domain": "探索思考 / 认知决策舰队",
+      "fused_from": [
+        "implement_plan",
+        "implement_plan_micro"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "makepad-2-0-dsl",
+      "title": "makepad-2-0-dsl",
+      "domain": "后端服务 / 分布式与 API 架构舰队",
+      "fused_from": [
+        "makepad-2-0-dsl",
+        "makepad-2-0-widgets"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "markstream-vue",
+      "title": "markstream-vue",
+      "domain": "UI / 前端与视觉体验舰队",
+      "fused_from": [
+        "markstream-vue",
+        "markstream-vue2"
+      ],
+      "locations_count": 2
+    },
+    {
+      "canonical_id": "skill-creator",
+      "title": "skill-creator",
+      "domain": "开发者效能 / 扩展元技能舰队",
+      "fused_from": [
+        "skill-creator",
+        "skill-developer",
+        "skill-development"
+      ],
+      "locations_count": 7
+    },
+    {
+      "canonical_id": "test-driven-development",
+      "title": "test-driven-development",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "fused_from": [
+        "test-driven-development",
+        "tdd"
+      ],
+      "locations_count": 5
+    }
+  ],
+  "mcp_servers_evidence": [
+    {
+      "id": "mcp-aas-core",
+      "title": "mcp · aas-core",
+      "domain": "开发者效能 / 扩展元技能舰队",
+      "aas_category": "meta",
+      "risk": "safe",
+      "capability_dimension": "maintenance workflow",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (6 项) 在授权范围内确定性执行；状态变更工具 (0 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-ai-library-embedding",
+      "title": "mcp · ai-library-embedding",
+      "domain": "数据科学 / 知识检索与记忆舰队",
+      "aas_category": "data",
+      "risk": "safe",
+      "capability_dimension": "data/storage",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (0 项) 在授权范围内确定性执行；状态变更工具 (2 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-ai-memory-library",
+      "title": "mcp · ai-memory-library",
+      "domain": "数据科学 / 知识检索与记忆舰队",
+      "aas_category": "data",
+      "risk": "low",
+      "capability_dimension": "data/storage",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (19 项) 在授权范围内确定性执行；状态变更工具 (22 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-brevo",
+      "title": "mcp · brevo",
+      "domain": "商业增长 / 营销与财务战略舰队",
+      "aas_category": "business",
+      "risk": "medium",
+      "capability_dimension": "external integrations",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (7 项) 在授权范围内确定性执行；状态变更工具 (275 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-browser-mcp",
+      "title": "mcp · browser-mcp",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "aas_category": "testing",
+      "risk": "low",
+      "capability_dimension": "testing/quality",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (1 项) 在授权范围内确定性执行；状态变更工具 (11 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-chrome-devtools",
+      "title": "mcp · chrome-devtools",
+      "domain": "质量保障 / 自动化测试与浏览器舰队",
+      "aas_category": "testing",
+      "risk": "low",
+      "capability_dimension": "testing/quality",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (7 项) 在授权范围内确定性执行；状态变更工具 (25 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-rea",
+      "title": "mcp · rea",
+      "domain": "Agent / 多智能体编排舰队",
+      "aas_category": "agent-orchestration",
+      "risk": "low",
+      "capability_dimension": "architecture/runtime",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (0 项) 在授权范围内确定性执行；状态变更工具 (0 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-supabase",
+      "title": "mcp · supabase",
+      "domain": "后端服务 / 分布式与 API 架构舰队",
+      "aas_category": "backend",
+      "risk": "medium",
+      "capability_dimension": "languages/frameworks",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (15 项) 在授权范围内确定性执行；状态变更工具 (13 项) 须遵循显式写入审批与最小权限边界。"
+    },
+    {
+      "id": "mcp-window-mcp",
+      "title": "mcp · window-mcp",
+      "domain": "DevOps / 工具链与发布部署舰队",
+      "aas_category": "devops",
+      "risk": "low",
+      "capability_dimension": "deployment/operations",
+      "trust_boundary": "AAS MCP 控制平面契约：The agent inspects and chooses. AAS records and validates. You control. 只读探查工具 (0 项) 在授权范围内确定性执行；状态变更工具 (20 项) 须遵循显式写入审批与最小权限边界。"
+    }
+  ]
+}

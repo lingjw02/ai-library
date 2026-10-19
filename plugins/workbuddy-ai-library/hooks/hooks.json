@@ -1,0 +1,41 @@
+{
+  "description": "AI Library 每轮证据预取（WorkBuddy）",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"D:/02_Development_Tools/AI library/.venv/Scripts/python.exe\" \"${CODEBUDDY_PLUGIN_ROOT}/hooks/workbuddy_daemon.py\" --ensure",
+            "description": "会话启动时预热常驻检索守护进程",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"D:/02_Development_Tools/AI library/.venv/Scripts/python.exe\" \"${CODEBUDDY_PLUGIN_ROOT}/hooks/workbuddy_prefetch.py\"",
+            "description": "读取用户输入，检索获准资料，向模型注入证据快照",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"D:/02_Development_Tools/AI library/.venv/Scripts/python.exe\" \"${CODEBUDDY_PLUGIN_ROOT}/hooks/workbuddy_prefetch.py\" --end-session",
+            "description": "会话结束时清理该会话的临时机甲记录",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
