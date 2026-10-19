@@ -41,7 +41,7 @@
 
 ### 🌟 What is AI Knowledge OS?
 
-Most "AI second brains" are just flat markdown folders or uncurated vector databases that devolve into digital junk drawers. **AI Knowledge OS** reimagines your knowledge base as a **living, breathing 3D cosmos**:
+Most "AI second brains" are just flat markdown folders or uncurated vector databases that rapidly devolve into digital junk drawers. **AI Knowledge OS** reimagines personal and agent memory as an **interactive, living 3D celestial cosmos**:
 
 - ☀️ **Central Suns**: Primary topic clusters, domains, and research horizons.
 - 🪐 **Orbiting Planets**: Atomic human notes, imported chat transcripts, and verified memory cores.
@@ -50,22 +50,55 @@ Most "AI second brains" are just flat markdown folders or uncurated vector datab
 
 ---
 
-### 🚀 Key Highlights
+### 🎮 All Interactive Features & Controls
 
-1. **Epistemic Truth Governance**:
-   - Strict separation of **human notes** (immutable ground truth), **imported sources** (raw evidence), and **AI inferred memories** (probabilistic hypotheses).
-   - Candidate staging lifecycle (`list_candidates` ➜ `accept_candidate`) prevents hallucinated agent conclusions from corrupting canonical memory.
+AI Knowledge OS delivers a complete suite of immersive controls across the 3D spaceport, cybernetic HUD, DeepSeek Harness, and multi-agent protocols:
 
-2. **Hybrid RRF Retrieval**:
-   - Blends SQLite **FTS5 BM25** keyword search with **dense vector embeddings** using Reciprocal Rank Fusion (RRF).
+#### 1. 🚀 Flight Deck & Cockpit Navigation (Station Flight Mode)
+Explore your knowledge space with full 6-DOF arcade flight controls:
 
-3. **Universal MCP Protocol (Stdio & SSE)**:
-   - Connects seamlessly to **Claude Desktop**, **Cursor**, **Antigravity**, **WorkBuddy**, and custom agent frameworks.
+| Key / Control | Action | Details |
+|---|---|---|
+| **`F` Key** | **Toggle Flight Mode** | Enter / exit the real-time flight piloting deck. |
+| **`W` / `S`** or `↑` / `↓` | **Thrust / Brake** | Accelerate forward into deep space or reverse thrust / brake. |
+| **`A` / `D`** or `←` / `→` | **Yaw Steering** | Smooth yaw left / right turn aligned with ship bow heading (+Z). |
+| **`Space` / `C`** | **Elevation Climb / Dive** | Vertical altitude climb (`Space`) or downward descent dive (`C`). |
+| **`V` Key** | **Toggle Camera Mode** | Switch between **1st-Person Bridge Cockpit** and **3rd-Person Chase Cam**. |
+| **`Shift` (Hold)** | **360° Free Tactical View** | Unlock the camera heading to freely inspect surrounding celestial bodies. |
+| **`Esc` Key** | **Emergency Dock & Exit** | Instantly cut engines, park the station, and return to orbital overview. |
+| **Speed Gauge HUD** | **Warp Streaks Telemetry** | Displays real-time speed in `AU/s` with dynamic warp particle trails. |
 
-4. **DeepSeek Harness (DSH) Native Integration**:
-   - Ships with an out-of-the-box `@ling/ai-library-harness` Cordis bundle.
-   - **Dynamic Island (灵动岛)**: Floating HUD pill for effortless topic switching, connection health monitoring, and mecha inspection.
-   - **Zero-Latency Evidence Injection**: Injects verified, source-attributed memory snapshots into the prompt waterfall *before* model token generation without extra MCP roundtrips.
+#### 2. 🌌 Celestial Universe & Orbital Graph Interactions
+- **OrbitControls**: Click and drag to orbit around clusters; scroll to zoom from galaxy scale down to planetary craters; right-click drag to pan.
+- **Sun / Topic Focus**: Left-click any Central Star to smoothly animate the camera into that topic's orbital plane, unrolling child topics and planetary moons.
+- **Planet Node Selection**: Hovering over any planet highlights its atmospheric glow and brings up quick metadata. Clicking pauses global rotation and opens the **Reader Drawer**.
+- **Synaptic Tractor Lines**: Dynamic glowing bezier tractor beams connecting related knowledge nodes with pulsing synaptic breathing animations.
+- **Sector Tactical Formations**: Specialized battlegroups (Engineering, Refactoring, Business, Cloud) patrolling in synchronized lockstep orbits.
+
+#### 3. 🕷️ Spider-Mecha Cybernetic Inspector
+- **Multi-Agent Docking Bays**: Dedicated physical landing slots for connected agents (`Claude`, `Codex`, `Antigravity`, `Gemini`, `DeepSeek`, `Doubao`, `Qwen`).
+- **Kinematic Leg Crawling**: Procedural multi-legged mechanical walking animations along tractor curves when traversing node-to-node.
+- **Real-Time Telemetry HUD**: Floating labels indicate current agent posture (`Exploring`, `Navigating`, `Reading Data`, `Searching`, `Idle`).
+- **Camera Follow Mode**: Click the follow icon on any active mecha to lock the orbital camera onto its journey as it navigates your knowledge graph.
+
+#### 4. 📖 Cybernetic HUD, Reader & Governance Consoles
+- **Slide-out Reader Drawer**: Full Markdown rendering, syntax-highlighted code blocks, metadata badges (Human Note, Inferred Memory, Raw Source), and outbound citation chips.
+- **Revision History Stepper**: Time-travel through previous revisions of any node with optimistic concurrency protection.
+- **Global Search Bar**: Instant hybrid search highlighting matching planets with radiant celestial halos.
+- **Timeline Date Presets**: Filter visible celestial bodies by temporal windows (`Last 24h`, `7 Days`, `All Time`).
+- **My Space (专属空间)**: Dedicated orbital track grouping personal human notes and multi-agent chat trajectory imports.
+- **Maintenance & Quarantine Hub**:
+  - *Candidate Review*: Staging area to **Accept**, **Reject**, or **Quarantine** inferred agent memories.
+  - *Conflict Inspector*: Interactive resolution dashboard for conflicting factual claims.
+  - *Backlog & Health Monitor*: SQLite vacuum, index diagnostics, and consistency audits.
+
+#### 5. 🤖 DeepSeek Harness (DSH) Dynamic Island
+- **Floating Pill HUD**: Persistent capsule situated at the top-center of the DeepSeek Harness chat window.
+- **One-Click Topic Switcher**: Expand the pill to switch context between the entire library or a specific topic solar system.
+- **Auto-Sync Latest Import**: Automatically detects new data intake batches and switches active context without manual reconfiguration.
+- **Intelligent Celestial Match & Genesis**: Analyzes current chat keywords against existing topic stars; if novel, offers a one-click genesis button to birth a new celestial topic into the 3D database.
+- **Live Spider Probe Window**: Embedded mini-viewport showing real-time mecha observations.
+- **`Esc` Shortcut**: Collapse the dynamic island instantly while preserving in-progress chat drafts.
 
 ---
 
@@ -97,24 +130,9 @@ Open **`http://127.0.0.1:8000`** in Chrome/Edge to explore your 3D Knowledge Uni
 
 ---
 
-### 🤖 DeepSeek Harness (DSH) Setup
+### 🔌 Connecting AI Agents via MCP
 
-AI Knowledge OS includes a dedicated Cordis Host bundle in [`plugins/deepseek-harness-ai-library`](plugins/deepseek-harness-ai-library):
-
-1. In your **DeepSeek Harness** chat prompt, paste:
-   ```text
-   Please install the local bundle:
-   D:/02_Development_Tools/ai-library/plugins/deepseek-harness-ai-library
-   Enable the bundle and verify the application status.
-   ```
-2. The **AI LIBRARY Dynamic Island** will appear at the top center of the Harness UI.
-3. Switch topics, view live Spider-Mecha telemetry, and enjoy autonomous context injection without burning model tool steps.
-
----
-
-### 🔌 Standard MCP Client Configuration
-
-#### Claude Desktop
+#### Claude Desktop Configuration
 Add to your `claude_desktop_config.json`:
 ```json
 {
@@ -128,6 +146,25 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
+#### Antigravity / Cursor Configuration
+```json
+{
+  "name": "ai-memory-library",
+  "command": "python",
+  "args": ["-m", "backend.adapters.mcp.stdio_server"],
+  "cwd": "${workspaceFolder}"
+}
+```
+
+#### Core MCP Tools (20+ Endpoints)
+- `search_knowledge_context`: Hybrid BM25/vector search across authorized knowledge scopes.
+- `get_memory_node`: Retrieve a specific knowledge node with citations and revision history.
+- `create_user_note` / `revise_user_note`: Create and update immutable human user notes.
+- `list_candidates` / `accept_candidate`: Review and promote inferred agent conclusions into canonical memory.
+- `create_work_handoff` / `get_work_handoff`: Pass task context and state safely across multiple agent sessions.
+- `begin_spider_session` / `drive_spider` / `end_spider_session`: Programmatically drive the 3D mecha inspector to examine graph neighborhoods.
+- `detect_candidate_conflicts` / `report_memory_conflict`: Cognitive consistency detection.
+
 ---
 
 <a name="-简体中文"></a>
@@ -135,32 +172,64 @@ Add to your `claude_desktop_config.json`:
 
 ### 🌟 什么是 AI Knowledge OS？
 
-传统的所谓“AI 第二大脑”大多只是扁平的 Markdown 文件夹或缺乏治理的向量库，随着时间推移极易沦为混乱的“数字垃圾场”。**AI Knowledge OS** 将知识体系升华为**鲜活运转的 3D 星际宇宙**：
+传统的所谓“AI 第二大脑”大多只是扁平的 Markdown 文件夹或缺乏治理的向量库，极易沦为混乱的“数字垃圾场”。**AI Knowledge OS** 将知识体系升华为**高度可交互、鲜活运转的 3D 星际宇宙**：
 
 - ☀️ **中心恒星（Suns）**：核心主题领域、研究方向与知识聚类。
 - 🪐 **环绕行星（Planets）**：原子化的人类笔记、跨端会话源文件、以及经过严谨验证的长期记忆核心。
-- 🛸 **星际舰队与空间站**：巡航中的 AI 智能体、活跃的 MCP 连接通道与工具护航舰队。
+- 🛸 **星际舰队与空间站**：巡航中的 AI 智能体、活跃的 MCP 连接通道与战术护航舰队。
 - 🕷️ **机甲探针（Spider-Mecha）**：穿梭于 3D 节点之间的赛博机甲，深入知识网络拓扑，执行版本追溯、引文对齐与认知冲突审计。
 
 ---
 
-### 💎 核心技术特性
+### 🎮 全量可交互功能与操作指南
 
-1. **认知防污染治理（Epistemic Governance）**：
-   - 严格区分**人类笔记**（不可篡改的事实基石）、**原始资料源**（完整证据链）与 **AI 推理记忆**（待审假设）。
-   - 独创候选记忆生命周期机制（`list_candidates` ➜ `accept_candidate`），彻底杜绝幻觉记忆污染正式库。
+系统内置了一整套沉浸式操作体系，无缝串联 3D 星空、赛博 HUD 控制台、DeepSeek Harness 灵动岛与多智能体协议：
 
-2. **BM25 + 向量 RRF 混合检索**：
-   - 基于 SQLite 原生 **FTS5 BM25** 关键词索引与稠密向量索引，采用倒数排名融合（RRF）算法，兼顾精准匹配与语义关联。
+#### 1. 🚀 空间站战备巡航飞控（Station Flight Mode）
+支持完整的 6-DOF（六自由度）太空街机飞行漫游模式，穿梭于知识星系之中：
 
-3. **全生态 MCP 协议支持（Stdio / SSE）**：
-   - 原生支持 **Claude Desktop**、**Cursor**、**Antigravity**、**WorkBuddy** 等主流智能体环境。
+| 按键 / 控制项 | 交互动作 | 详细说明 |
+|---|---|---|
+| **`F` 键** | **进入 / 退出飞控** | 一键在全局轨道观察模式与空间站第一线飞控之间自由切换。 |
+| **`W` / `S`** 或 `↑` / `↓` | **引擎推进 / 反推刹车** | 加速冲向深空天体，或启动反向推进器实现减速泊车。 |
+| **`A` / `D`** 或 `←` / `→` | **偏航转向（Yaw）** | 平滑向左 / 向右转向，镜头视角与舰艏航向（+Z）精准对齐。 |
+| **`Space`（空格）/ `C`** | **垂向爬升 / 俯冲下沉** | 垂直向上爬升高度（`Space`）或向下俯冲切入轨道平面（`C`）。 |
+| **`V` 键** | **切换主视模式** | 在 **第三人称追随视角** 与 **第一人称舰桥视角** 之间瞬时切换。 |
+| **`Shift` 键（长按）** | **360° 自由战术环视** | 释放相机航向锁定，按住即可任意旋转视角观察周遭星体与战舰。 |
+| **`Esc` 键** | **安全泊车退出** | 紧急切断引擎动力，保存当前坐标并退出飞控返回星系全局视角。 |
+| **速度与曲速 HUD** | **实时航行状态** | HUD 实时显示当前航速（`AU/s`），伴随空间曲速跳跃光芒流线动效。 |
 
-4. **DeepSeek Harness（DSH）原生无感注入**：
-   - 内置经过实测验证的 `@ling/ai-library-harness` Cordis 插件。
-   - **悬浮灵动岛（Dynamic Island）**：窗口顶部胶囊控制台，可随时收起/展开，实时查看连接主题、切换探索领域、监视机甲观察。
-   - **Pre-Step 瀑布流极速注入**：在模型处理用户输入之前，自动读取使用规则并检索获准资料注入证据快照，无需模型手动逐轮调用检索工具，极大节省 Token 与耗时。
-   - **智能星图拓扑开辟**：自动计算会话关键词与星图天体的语义亲和度，支持一键在 3D 宇宙中开辟新主题天体。
+#### 2. 🌌 3D 宇宙天体与星轨交互
+- **OrbitControls 轨道手势**：鼠标左键拖拽自由环视旋转；滚轮缩放实现从全星系总览到单个天体表面细节；右键拖拽平移视口。
+- **恒星聚焦（Sun/Topic Focus）**：鼠标单击任意主题恒星，相机平滑飞跃切入该主题轨道平面，自动展开环绕的子主题伴星与行星内容节点。
+- **行星节点读取（Planet Selection）**：鼠标悬停任意行星显示大气层发光轮廓与悬浮信息卡；单击天体自动暂停星系自转，滑出右侧**阅读器抽屉**。
+- **突触牵引光束（Synaptic Tractor Lines）**：知识节点间以发光贝塞尔光束动态相连，具备仿生突触呼吸闪烁动效。
+- **战术护航舰队（Fleet Formations）**：工程、重构、商业、云原生等领域旗舰与 MCP 战机呈梯队编队绕轨道同步巡航。
+
+#### 3. 🕷️ 机甲探针巡检系统（Spider-Mecha Inspector）
+- **多智能体专属泊位**：为 `Claude`、`Codex`、`Antigravity`、`Gemini`、`DeepSeek`、`Doubao`、`Qwen` 等配置了独立物理停泊港。
+- **动力学多足爬行**：机甲在沿着牵引光束跨节点移动时，呈现多足仿生步态解算与起伏爬行。
+- **实时状态感知**：探针上方悬浮微型全息标签，实时显示智能体动作（`探索中`、`导航`、`读取资料`、`检索`、`空闲`）。
+- **相机跟随观察（Follow Mode）**：点击任意机甲的“跟随”按钮，主摄像机将自动吸附跟随该机甲在星系中穿梭巡检。
+
+#### 4. 📖 赛博 HUD、内容阅读器与治理控制台
+- **滑出式内容阅读器（Reader Drawer）**：支持完整 Markdown 渲染、代码高亮、作者身份标识（人类笔记、AI推理记忆、原始会话源）与引文外链。
+- **历史版本漫游滑块（Revision Stepper）**：支持在任意知识节点的历史修订版本之间自由回溯，具备乐观锁防篡改保护。
+- **全局极速检索栏（Search Bar）**：输入关键词即时检索，匹配成功的行星将在 3D 宇宙中亮起辉光光环。
+- **时间线预设过滤（Timeline Presets）**：一键按时间范围（`24小时内`、`近7天`、`全部`）过滤显示可见天体。
+- **专属主页（My Space）**：专属轨道环，汇集个人笔记与各 Agent 对话导入轨迹。
+- **维护与认知隔离中心（Maintenance & Quarantine Hub）**：
+  - *候选记忆审批*：对 Agent 推理出的结论执行 **采纳（Accept）**、**驳回（Reject）** 或 **隔离（Quarantine）**。
+  - *冲突仲裁台*：针对出现分歧的观点进行证据包并排比对与裁定。
+  - *健康度与积压审计*：SQLite 碎片整理、FTS 索引重建与一致性校验。
+
+#### 5. 🤖 DeepSeek Harness（DSH）原生灵动岛
+- **顶部居中悬浮灵动岛**：常驻于 DeepSeek Harness 窗口顶部正中，胶囊状设计，极低视觉侵占。
+- **一键切换探索主题**：点击胶囊展开下拉菜单，可秒级在“整个 AI Library”或具体星图主题间切换。
+- **自动感知新导入内容**：后台导入新的 Notes 或会话资料时，灵动岛自动捕获批次并提示切换，无需手动配置。
+- **智能星图会话匹配与开辟新天体**：实时分析当前对话关键词与星图已有主题天体的亲和度；若为全新领域，提供“一键开辟新天体”按钮，在 3D 宇宙中即时生成新恒星。
+- **机甲探针观测窗口**：灵动岛内嵌轻量探针视口，直接监视底层机甲当前位置与动作。
+- **`Esc` 极速收起**：随时按 Esc 键收起灵动岛并自动保留正在输入的聊天草稿。
 
 ---
 
@@ -176,8 +245,7 @@ uv sync
 
 # 或者使用常规 pip
 python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/macOS: source .venv/bin/activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e .
 ```
 
@@ -193,18 +261,40 @@ python -m uvicorn backend.adapters.api.app:app --host 127.0.0.1 --port 8000 --re
 
 ---
 
-### 🤖 DeepSeek Harness（DSH）接入说明
+### 🔌 多智能体 MCP 连接配置
 
-AI Knowledge OS 在 [`plugins/deepseek-harness-ai-library`](plugins/deepseek-harness-ai-library) 中提供了原生 Cordis Host bundle：
+#### Claude Desktop 配置
+在 `claude_desktop_config.json` 中添加：
+```json
+{
+  "mcpServers": {
+    "ai-memory-library": {
+      "command": "python",
+      "args": ["-m", "backend.adapters.mcp.stdio_server"],
+      "cwd": "/path/to/ai-library"
+    }
+  }
+}
+```
 
-1. 在 **DeepSeek Harness** 对话框中发送：
-   ```text
-   请安装本地插件 bundle：
-   D:/02_Development_Tools/ai-library/plugins/deepseek-harness-ai-library
-   启用该 bundle 并检查应用状态。
-   ```
-2. 窗口顶部正中将弹出 **AI LIBRARY 灵动岛** 胶囊。
-3. 您可以自由切换知识主题、查看机甲探针的实时观测视口，并在对话中自动获得高可信度的知识注入。
+#### Antigravity / Cursor 配置
+```json
+{
+  "name": "ai-memory-library",
+  "command": "python",
+  "args": ["-m", "backend.adapters.mcp.stdio_server"],
+  "cwd": "${workspaceFolder}"
+}
+```
+
+#### 核心 MCP 工具清单（20+ 真实端点）
+- `search_knowledge_context`：混合检索獲准资料范围。
+- `get_memory_node`：获取指定节点的完整引文与修订历史。
+- `create_user_note` / `revise_user_note`：创建与更新不可篡改的人类笔记。
+- `list_candidates` / `accept_candidate`：审查并采纳 Agent 推理记忆进入正式库。
+- `create_work_handoff` / `get_work_handoff`：跨 Agent 安全传递任务状态与上下文。
+- `begin_spider_session` / `drive_spider` / `end_spider_session`：编程控制 3D 机甲探针巡检图谱。
+- `detect_candidate_conflicts` / `report_memory_conflict`：认知一致性检测与冲突报告。
 
 ---
 
@@ -220,7 +310,7 @@ ai-library/
 │   └── storage/               # SQLite 规范存储与原始数据管理
 ├── frontend/                  # WebGL 3D 宇宙可视化前端
 │   ├── index.html             # 3D 视口、星空穹顶与 HUD 控制面板
-│   ├── js/                    # Three.js 天体轨道运动学与机甲探针控制器
+│   ├── js/                    # Three.js 飞控动力学、星轨运动与机甲控制器
 │   └── assets/                # Procedural & GLTF 天体模型资产
 ├── plugins/                   # 宿主集成插件
 │   └── deepseek-harness-ai-library/ # DSH 专属灵动岛与上下文桥接插件
